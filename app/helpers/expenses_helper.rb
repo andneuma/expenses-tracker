@@ -3,11 +3,12 @@ module ExpensesHelper
     expenses = ExpenseList.find(expense_list).expenses
     total = expenses.map {|expense| expense.expenses_in_euro}.reduce(&:+)
 
-    if total.nil?
-      0
-    else
-      total
-    end
-
+    total.nil? && 0 || total
   end
+
+  def sum_expenses_collection(expense_collection)
+    total = expense_collection.map {|expense| expense.expenses_in_euro}.reduce(&:+)
+    total.nil? && 0 || total
+  end
+
 end

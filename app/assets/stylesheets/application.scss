@@ -33,6 +33,7 @@ body {
   padding-top: 60px;
 }
 $navbar-blue: #337ab7;
+$navbar-gray: #e7e7e7;
 $white: #FFF;
 
 .panel-heading {
@@ -49,4 +50,16 @@ $white: #FFF;
   &:hover {
     background-color: lighten($navbar-blue, 20);
   }
+}
+
+.month-row {
+  background-color: lighten($navbar-gray, 5);
+  td {
+    font-style: italic;
+  }
+}
+
+.spacer-row {
+  border-collapse: separate;
+  border-spacing: 0 20px;
 }

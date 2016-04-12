@@ -1,25 +1,30 @@
 <div class="container">
 
     <div class="panel-group">
-        <% @expense_lists.each do |expense_list| %>
-        <div class="col-lg-3 col-md-4 col-xs-6">
-            <div class="panel panel-default">
-                <%= link_to expense_list_path(expense_list) do %>
-                <div class="panel-heading">
-                    <%= expense_list.name %>
-                </div>
-                <% end %>
-                <div class="panel-body">
-                    <p class="text-muted">
-                        <%= expense_list.description %>
-                    </p>
-                </div>
-                <div class="panel-footer">
-                    <%= "Ausgaben seit #{expense_list.created_at.to_date}: " %>
-                    <b><%= "#{total_expenses_in_expense_list expense_list}€" %></b>
+        <% if @expense_lists.any? %>
+            <% @expense_lists.each do |expense_list| %>
+            <div class="col-lg-3 col-md-4 col-xs-6">
+                <div class="panel panel-default">
+                    <%= link_to expense_list_path(expense_list) do %>
+                    <div class="panel-heading">
+                        <%= expense_list.name %>
+                    </div>
+                    <% end %>
+                    <div class="panel-body">
+                        <p class="text-muted">
+                            <%= expense_list.description %>
+                        </p>
+                    </div>
+                    <div class="panel-footer">
+                        <b><%= "#{total_expenses_in_expense_list expense_list}€" %></b>
+                        <small><%= "seit Erstellung (#{expense_list.created_at.to_date})" %></small>
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <% end %>
+            <% else %>
+            Noch keine Liste vorhanden, du kannst eine neue anlegen
         <% end %>
     </div>
 

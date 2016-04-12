@@ -25,6 +25,29 @@ class ExpensesController < ApplicationController
     end
   end
 
+  def edit
+    @expense_list = ExpenseList.find(params[:expense_list_id])
+    @expense = @expense_list.expenses.find(params[:id])
+  end
+
+  def update
+    @expense_list = ExpenseList.find(params[:expense_list_id])
+    @expense = @expense_list.expenses.find(params[:id])
+
+    if @expense.update(expense_params)
+      redirect_to expense_list_path(@expense_list)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @expense_list = ExpenseList.find(params[:expense_list_id])
+    @expense_list.expenses.find(params[:id]).destroy
+    
+    redirect_to expense_list_path(@expense_list)
+  end
+
   private
 
   def expense_params
