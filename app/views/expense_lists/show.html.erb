@@ -1,0 +1,62 @@
+<div class="container">
+    <h4><%= @expense_list.name %></h4>
+    <small class="text-muted"><%= @expense_list.description %></small>
+</div>
+
+<div class="container">
+    <table class="table table-sm table-hover">
+        <thead>
+            <th class="hidden-xs-up"></th>
+            <th>Datum</th>
+            <th>Einkauf wo</th>
+            <th>Summe Ausgaben</th>
+        </thead>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><strong><%= @expenses.map {|e| e[:expenses_in_euro]}.reduce(&:+) %>€</strong></td>
+            </tr>
+        </tfoot>
+        <tbody>
+            <% @expenses.each do |expense| %>
+            <tr>
+                <td>
+                    <%= link_to '', '', {class: 'btn btn-default btn-xs glyphicon glyphicon-pencil glyph-button'} %>
+                    <%= link_to '', '', {class: 'btn btn-default btn-xs glyphicon glyphicon-trash glyph-button'} %>
+                    <%= link_to '', '', {class: 'btn btn-default btn-xs glyphicon glyphicon-modal-window glyph-button', "data-toggle" => "modal", "data-target" => ".expense_comment_modal"} %>
+                    <div class="modal fade expense_comment_modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <!-- /.modal-content -->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h4 class="modal-title">Comment</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p><%= expense.comment %></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                    </div>
+                </td>
+                <td><%= expense.when %></td>
+                <td><%= expense.where %></td>
+                <td><%= "#{expense.expenses_in_euro}€" %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+    <%= monthly_expenses_list %>
+    <p>
+        <%= link_to "Ausgabe hinzufügen", new_expense_list_expense_path(@expense_list), {class: "btn btn-primary btn-xs"} %>
+        <%= link_to 'Zurück', expense_lists_path, {class: "btn btn-primary btn-xs"} %>
+    </p>
+</div>

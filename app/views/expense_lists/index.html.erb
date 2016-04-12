@@ -1,0 +1,29 @@
+<div class="container">
+
+    <div class="panel-group">
+        <% @expense_lists.each do |expense_list| %>
+        <div class="col-lg-3 col-md-4 col-xs-6">
+            <div class="panel panel-default">
+                <%= link_to expense_list_path(expense_list) do %>
+                <div class="panel-heading">
+                    <%= expense_list.name %>
+                </div>
+                <% end %>
+                <div class="panel-body">
+                    <p class="text-muted">
+                        <%= expense_list.description %>
+                    </p>
+                </div>
+                <div class="panel-footer">
+                    <%= "Ausgaben seit #{expense_list.created_at.to_date}: " %>
+                    <b><%= "#{total_expenses_in_expense_list expense_list}€" %></b>
+                </div>
+            </div>
+        </div>
+        <% end %>
+    </div>
+
+</div>
+<p>
+    <%= link_to "Neue Liste anlegen", new_expense_list_path, {class: 'btn btn-default btn-primary btn-xs'} %>
+</p>

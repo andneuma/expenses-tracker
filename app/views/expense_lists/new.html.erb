@@ -1,0 +1,28 @@
+<div class="container">
+    <h4>Neue Liste anlegen</h4>
+    <%= form_for @expense_list do |f| %>
+
+    <fieldset class="form-group">
+        <div class="col-xs-4">
+            <%= f.label 'Name der Liste'%>
+            <%= f.text_field :name, {class: "form-control", placeholder: "e.g. Essenseinkäufe"} %>
+        </div>
+    </fieldset>
+    <fieldset class="form-group">
+        <div class="col-xs-4">
+            <%= f.label "Beschreibung" %>
+            <%= f.text_area :description, {class: "form-control", placeholder: "Liste für Wocheneinkaufs-Ausgaben "} %>
+        </div>
+    </fieldset>
+    <fieldset class="form-group">
+        <div class="col-xs-4">
+            <%= f.label "Monatliches Budget" %>
+            <%= f.text_field :budget_in_euro, {class: "form-control", placeholder: "optional"} %>
+        </div>
+    </fieldset>
+    <div class="col-xs-4">
+        <%= f.submit "Eintragen", class: "btn btn-primary btn-xs" %>
+        <%= link_to "Zurück", expense_lists_path, class: "btn btn-primary btn-xs" %>
+    </div>
+    <% end  %>
+</div>

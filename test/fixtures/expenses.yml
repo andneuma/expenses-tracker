@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  where: MyString
+  comment: MyText
+  when: 2016-04-10
+  expenses_in_euro: 9.99
+
+two:
+  where: MyString
+  comment: MyText
+  when: 2016-04-10
+  expenses_in_euro: 9.99
