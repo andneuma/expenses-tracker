@@ -17,8 +17,10 @@ class ExpensesController < ApplicationController
   def create
     @expense_list = ExpenseList.find(params[:expense_list_id])
     @expense = @expense_list.expenses.create(expense_params)
+    @expense.save
+    @errors = @expense.errors
 
-    if @expense.save
+    unless @errors.any?
       redirect_to expense_list_path(@expense_list)
     else
       render :new
@@ -33,8 +35,10 @@ class ExpensesController < ApplicationController
   def update
     @expense_list = ExpenseList.find(params[:expense_list_id])
     @expense = @expense_list.expenses.find(params[:id])
+    @expense.update(expense_params)
+    @errors = @expense.errors
 
-    if @expense.update(expense_params)
+    unless @errors.any?
       redirect_to expense_list_path(@expense_list)
     else
       render :edit
@@ -44,7 +48,7 @@ class ExpensesController < ApplicationController
   def destroy
     @expense_list = ExpenseList.find(params[:expense_list_id])
     @expense_list.expenses.find(params[:id]).destroy
-    
+
     redirect_to expense_list_path(@expense_list)
   end
 

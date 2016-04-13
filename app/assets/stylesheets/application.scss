@@ -63,3 +63,12 @@ $white: #FFF;
   border-collapse: separate;
   border-spacing: 0 20px;
 }
+
+.container {
+  padding-left: 0px;
+}
+
+.panel-group .panel {
+    margin-bottom: 15px;
+    border-radius: 4px;
+}

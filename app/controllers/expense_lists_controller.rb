@@ -15,8 +15,10 @@ class ExpenseListsController < ApplicationController
   def create
     # TODO: Implement error handling
     @expense_list = ExpenseList.new(expense_list_params)
+    @expense_list.save
+    @errors = @expense_list.errors
 
-    if @expense_list.save
+    unless @errors.any?
       flash[:success] = "Jo, hat jeklappt!"
       # redirect_to expense_list_path(@expense_list)
       render :show
@@ -31,8 +33,10 @@ class ExpenseListsController < ApplicationController
 
   def update
     @expense_list = ExpenseList.find(params[:id])
+    @expense_list.update(expense_list_params)
+    @errors = @expense_list.errors
 
-    if @expense_list.update(expense_list_params)
+    unless @errors.any?
       render :show
     else
       render :edit

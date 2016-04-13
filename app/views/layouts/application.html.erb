@@ -7,8 +7,9 @@
         <%= csrf_meta_tags %>
     </head>
     <body>
-      <div class="container-fluid">
+      <div class="container">
         <%= render 'layouts/navbar' %>
+        <%= render partial: 'shared/error_messages' %>
         <%= yield %>
         <%= debug(params) %>
       </div>

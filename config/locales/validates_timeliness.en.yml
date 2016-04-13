@@ -14,3 +14,20 @@ en:
       date: '%Y-%m-%d'
       time: '%H:%M:%S'
       datetime: '%Y-%m-%d %H:%M:%S'
+
+de:
+  errors:
+    messages:
+      invalid_date: "ist kein gültiges Datum."
+      invalid_time: "ist keine gültige Zeitangabe"
+      invalid_datetime: "ist keine gültige Zeitangabe"
+      is_at: "must be at %{restriction}"
+      before: "must be before %{restriction}"
+      on_or_before: "must be on or before %{restriction}"
+      after: "muss nach %{restriction}"
+      on_or_after: "muss an oder nach %{restriction}"
+  validates_timeliness:
+    error_value_formats:
+      date: '%Y-%m-%d'
+      time: '%H:%M:%S'
+      datetime: '%Y-%m-%d %H:%M:%S'

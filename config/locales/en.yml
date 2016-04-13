@@ -20,4 +20,34 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    models:
+      expense: "Ausgabe"
+      expense_list: "Ausgabenliste"
+    attributes:
+      expense:
+        where: "Ort"
+        when: "Datum"
+        expenses_in_euro: "Ausgaben"
+        comment: "Kommentar"
+      expense_list:
+        name: "Name"
+        description: "Beschreibung"
+        budget_in_euro: "Budget"
+    errors:
+      models:
+        expense:
+          attributes:
+            when:
+              blank: "kann nicht leer sein"
+            expenses_in_euro:
+              blank: "kann nicht leer sein"
+              not_a_number: "ist keine gültige Zahl"
+            where:
+              blank: "kann nicht leer sein"
+        expense_list:
+          attributes:
+            name:
+              blank: "kann nicht leer sein"
+            description:
+              blank: "kann nicht leer sein."
