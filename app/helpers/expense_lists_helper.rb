@@ -1,17 +1,12 @@
 require 'date'
 
 module ExpenseListsHelper
-  def namify_month(month)
-    # MONTHNAMES_GER = [nil, "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
-    Date::MONTHNAMES[month]
-  end
-
   def expenses_in_year(expenses)
-    expenses.group_by {|e| e[:when].strftime("%y")}
+    expenses.group_by {|e| e[:when].strftime("%Y")}.sort
   end
 
   def expenses_in_months(expenses)
-    expenses.group_by {|e| e[:when].strftime("%m")}
+    expenses.group_by {|e| e[:when].month}.sort.map {|month, expense| [Date::MONTHNAMES[month],expense]}
 
     # expenses_per_month = Hash[expenses.map {|expense| [expense[:when].month, []]}]
     #

@@ -53,22 +53,36 @@ $white: #FFF;
 }
 
 .month-row {
-  background-color: lighten($navbar-gray, 5);
+  background-color: darken($navbar-gray, 5);
   td {
     font-style: italic;
   }
 }
 
+.monthly-totals-row {
+  background-color: lighten($navbar-gray, 5);
+  font-style: italic;
+  border-collapse: separate;
+  border-spacing: 0 20px;
+  border-style: none;
+}
+
 .spacer-row {
   border-collapse: separate;
   border-spacing: 0 20px;
-}
-
-.container {
-  padding-left: 0px;
+  border-style: none;
 }
 
 .panel-group .panel {
     margin-bottom: 15px;
     border-radius: 4px;
+    padding-left: 0px;
+}
+
+.col-lg-12 {
+    padding-left: 0px;
+}
+
+.main-container {
+  margin-top: 30px;
 }

@@ -6,51 +6,56 @@
 <div class="container">
     <!--  YEAR-->
     <% expenses_in_year(@expense_list.expenses).each do |year, expenses| %>
-        <h4><%= year %></h4>
-        <table class="table table-condensed table-hover">
-            <thead>
-                <th class="hidden-xs-up"></th>
-                <th>Datum</th>
-                <th>Einkauf wo</th>
-                <th>Ausgaben</th>
-            </thead>
-            <tbody>
-                <!--  MONTH -->
-                <% expenses_in_months(expenses).each do |month, expenses| %>
-                <tr>
-                    <th colspan="3" class="month-row"><%= month %></th>
-                    <td class="month-row monthly-totals-row">Summe <%= sum_expenses_collection expenses %></td>
-                </tr>
-                    <!--  EXPENSES IN RESPECTIVE MONTH-->
-                    <% expenses.each do |expense| %>
-                    <tr>
-                        <td>
-                            <%= link_to '', edit_expense_list_expense_path(@expense_list, expense), {class: 'btn btn-default btn-xs glyphicon glyphicon-pencil glyph-button'} %>
-                            <%= link_to '', expense_list_expense_path(@expense_list, expense), {method: "delete",
-                                                                                                data: { confirm: "Bist du dir sicher, dass du den Eintrag löschen willst?" },
-                                                                                                class: 'btn btn-default btn-xs glyphicon glyphicon-trash glyph-button'} %>
-                            <%= link_to '', '', {class: 'btn btn-default btn-xs glyphicon glyphicon-modal-window glyph-button'} %>
-                            </div>
-                        </td>
-                        <td><%= expense.when %></td>
-                        <td><%= expense.where %></td>
-                        <td><%= "#{expense.expenses_in_euro}€" %></td>
-                    </tr>
-                    <% end %>
-                    <tr>
-                        <td colspan="4" class="spacer-row"></td>
-                    </tr>
-                <% end %>
-
-            </tbody>
-        </table>
-    <% end  %>
-    <p>
-        <%= link_to "Ausgabe hinzufügen", new_expense_list_expense_path(@expense_list), {class: "btn btn-primary btn-xs"} %>
-        <%= link_to "Liste ändern", edit_expense_list_path(@expense_list), {class: "btn btn-primary btn-xs"} %>
-        <%= link_to "Liste löschen", expense_list_path(@expense_list), {method: "delete",
-                                                         data: { confirm: "Bist du dir sicher, dass du die Liste löschen willst?" },
-                                                         class: 'btn btn-default btn-xs'} %>
-        <%= link_to 'Zurück', expense_lists_path, {class: "btn btn-primary btn-xs"} %>
-    </p>
+    <h4><%= year %></h4>
+    <table class="table table-condensed table-hover">
+        <thead>
+            <th class="hidden-xs-up"></th>
+            <th class="col-md-1">Datum</th>
+            <th class="col-md-1">Wo</th>
+            <th class="col-md-1">Wer</th>
+            <th class="col-md-1">Wieviel</th>
+            <th class="col-md-1">Kasse</th>
+            <th>Kommentar</th>
+        </thead>
+        <tbody>
+            <!--  MONTH -->
+            <% expenses_in_months(expenses).each do |month, expenses| %>
+            <tr>
+                <th class="month-row"></th>
+                <th colspan="6" class="month-row"><%= month %></th>
+            </tr>
+            <!--  EXPENSES IN RESPECTIVE MONTH-->
+            <% expenses.each do |expense| %>
+            <tr>
+                <td class="col-md-1">
+                    <%= link_to '', edit_expense_list_expense_path(@expense_list, expense), {class: 'btn btn-default btn-xs glyphicon glyphicon-pencil glyph-button'} %>
+                    <%= link_to '', expense_list_expense_path(@expense_list, expense), {method: "delete", data: { confirm: "Bist du dir sicher, dass du den Eintrag löschen willst?" }, class: 'btn btn-default btn-xs glyphicon glyphicon-trash glyph-button'} %>
+                </div>
+            </td>
+            <td><%= expense.when.strftime("%d.%m") %></td>
+            <td><%= expense.where %></td>
+            <td></td>
+            <td><%= "#{expense.expenses_in_euro}€" %></td>
+            <td></td>
+            <td><%= expense.comment %></td>
+        </tr>
+        <% end %>
+        <tr>
+            <td class="monthly-totals-row" colspan=4></td>
+            <td class="monthly-totals-row"><b><%= sum_expenses_collection expenses %></td></b>
+            <td class="monthly-totals-row" colspan="2"></td>
+        </tr>
+        <tr>
+            <td colspan="7" class="spacer-row"></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+<% end  %>
+<p>
+    <%= link_to "Ausgabe hinzufügen", new_expense_list_expense_path(@expense_list), {class: "btn btn-success btn-xs"} %>
+    <%= link_to "Liste ändern", edit_expense_list_path(@expense_list), {class: "btn btn-warning btn-xs"} %>
+    <%= link_to "Liste löschen", expense_list_path(@expense_list), {method: "delete", data: { confirm: "Bist du dir sicher, dass du die Liste löschen willst?" }, class: 'btn btn-danger btn-xs'} %>
+    <%= link_to 'Zurück', expense_lists_path, {class: "btn btn-primary btn-xs"} %>
+</p>
 </div>
