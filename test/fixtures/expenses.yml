@@ -1,13 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  where: MyString
-  comment: MyText
+expensive:
+  where: Kaisers
+  comment: Musste zu Kaisers, sorry
   when: 2016-04-10
-  expenses_in_euro: 9.99
+  expenses_in_euro: 123
+  expense_list: Essensliste
 
-two:
-  where: MyString
-  comment: MyText
-  when: 2016-04-10
-  expenses_in_euro: 9.99
+cheap:
+  where: Aldi
+  comment: bought no coffee
+  when: 2016-04-11
+  expenses_in_euro: 32.0
+  expense_list: Essensliste
