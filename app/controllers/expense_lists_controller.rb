@@ -55,6 +55,6 @@ class ExpenseListsController < ApplicationController
 
   private
   def expense_list_params
-    params.require(:expense_list).permit(:name, :description, :budget_in_euro)
+    params.require(:expense_list).permit(:name, :description, :budget_in_euro, :members_list)
   end
 end

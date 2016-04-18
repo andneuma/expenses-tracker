@@ -1,6 +1,13 @@
 <div class="container">
     <h4><%= @expense_list.name %></h4>
     <small class="text-muted"><%= @expense_list.description %></small>
+    <p>
+        <small class="text-muted">List members:
+            <% @expense_list.members.each do |member| %>
+                <%= mail_to member %>
+            <% end %>
+        </small>
+    </p>
 </div>
 
 <div class="container">
