@@ -20,15 +20,15 @@ en:
         expense:
           attributes:
             when:
-              blank: "kann nicht leer sein"
+              blank: "darf nicht leer sein"
             expenses_in_euro:
-              blank: "kann nicht leer sein"
+              blank: "darf nicht leer sein"
               not_a_number: "ist keine gültige Zahl"
             where:
-              blank: "kann nicht leer sein"
+              blank: "darf nicht leer sein"
         expense_list:
           attributes:
             name:
-              blank: "kann nicht leer sein"
+              blank: "darf nicht leer sein"
             description:
-              blank: "kann nicht leer sein."
+              blank: "darf nicht leer sein."

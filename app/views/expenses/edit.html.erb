@@ -1,30 +1,4 @@
-<%= form_for([@expense_list, @expense]) do |f| %>
-<fieldset class="form-group">
-    <div class="col-xs-4">
-        <%= f.label 'Wo warst du einkaufen?' %>
-        <%= f.text_field :where, {class: 'form-control', placeholder: 'e.g. Lidl'}%>
-    </div>
-</fieldset>
-<fieldset class="form-group">
-    <div class="col-xs-4">
-        <%= f.label 'Wieviel € hast du ausgegeben?' %>
-        <%= f.text_field :expenses_in_euro, {class: 'form-control', placeholder: '23,40'}%>
-    </div>
-</fieldset>
-<fieldset class="form-group">
-    <div class="col-xs-4">
-        <%= f.label 'Wann warst du einkaufen?' %>
-        <%= f.text_field :when, {class: 'form-control', placeholder: '23.04.1983'}%>
-    </div>
-</fieldset>
-<fieldset class="form-group">
-    <div class="col-xs-4">
-        <%= f.label 'Füge Kommentar hinzu (optional)' %>
-        <%= f.text_area :comment, {class: 'form-control', placeholder: 'Hab viel Kaffee gekauft (teuer!)'}%>
-    </div>
-</fieldset>
-<div class="col-xs-4">
-    <%= f.submit "Eintragen", class: "btn btn-primary" %>
-    <%= link_to "Zurück", expense_list_path(@expense.expense_list), class: "btn btn-primary" %>
+<div class="container">
+  <h4>Ausgabe ändern</h4>
+  <%= render 'form' %>
 </div>
-<% end %>

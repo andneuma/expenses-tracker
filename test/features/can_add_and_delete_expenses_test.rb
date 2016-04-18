@@ -1,6 +1,7 @@
 require "test_helper"
 
 feature "CanAccessExpenseList" do
+
   scenario "Can add Expenses" do
     visit expense_lists_path
     click_link 'Essensliste'

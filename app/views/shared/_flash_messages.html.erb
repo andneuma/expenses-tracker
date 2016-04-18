@@ -1,0 +1,8 @@
+<div class="container">
+    <% flash.each do |type, message| %>
+    <div class="alert alert-<%= bootstrap_class_for(type) %>">
+        <button class="close btn-xs glyphicon glyphicon-ok glyph-button" data-dismiss="alert"></button>
+        <%= message %>
+    </div>
+    <% end %>
+</div>

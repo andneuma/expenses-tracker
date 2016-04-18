@@ -9,7 +9,7 @@
     <body>
       <div class="container main-container">
         <%= render 'layouts/navbar' %>
-        <%= render partial: 'shared/error_messages' %>
+        <%= render partial: 'shared/flash_messages' %>
         <%= yield %>
         <%= debug(params) %>
       </div>

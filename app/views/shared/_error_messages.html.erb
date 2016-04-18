@@ -1,9 +1,0 @@
-<% unless @errors.nil? %>
-<div class="alert alert-danger">
-    <% @errors.full_messages.each do |msg| %>
-    <p>
-        <%= msg %>
-    </p>
-    <%end  %>
-</div>
-<% end %>
