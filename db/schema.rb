@@ -11,15 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160411154553) do
+ActiveRecord::Schema.define(version: 20160418181151) do
 
   create_table "expense_lists", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.decimal  "budget_in_euro"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.integer  "expense_id"
+    t.text     "members",        default: "--- []\n"
   end
 
   add_index "expense_lists", ["expense_id"], name: "index_expense_lists_on_expense_id"
