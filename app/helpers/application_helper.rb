@@ -17,4 +17,5 @@ module ApplicationHelper
   def error_for_form(object, feature)
     object.errors.any? && object.errors[feature].first || ""
   end
+
 end
