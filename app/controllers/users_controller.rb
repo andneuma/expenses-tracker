@@ -15,6 +15,7 @@ class UsersController < ApplicationController
       redirect_to root_path
     else
       @errors = @user.errors
+      flash[:danger] = "Nutzer_in konnte nicht erstellt werden!"
       render 'new'
     end
   end
@@ -30,7 +31,7 @@ class UsersController < ApplicationController
       flash[:success] = "Änderungen erfolgreich übernommen"
       redirect_to root_path
     else
-      flash[:danger] = "Änderungen konnten nicht übernommen werden"
+      flash[:danger] = "Änderungen konnten nicht übernommen werden!"
       render 'edit'
     end
   end
