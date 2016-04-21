@@ -1,5 +1,6 @@
 class Expense < ActiveRecord::Base
   belongs_to :expense_list
+  belongs_to :user
 
   validates :where, presence: true
   validates_date :when, on_or_before: -> { Date.current }

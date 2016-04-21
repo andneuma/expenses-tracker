@@ -1,0 +1,34 @@
+<div class="container">
+  <%= form_for @user do |f| %>
+    <fieldset class="form-group">
+        <div class="col-xs-4">
+            <%= f.label 'Name'%>
+            <%= f.text_field :name, class: "form-control" %>
+            <div class="form_input_error"><%= error_for_form(@user, "name") %></div>
+        </div>
+    </fieldset>
+    <fieldset class="form-group">
+        <div class="col-xs-4">
+            <%= f.label "Email-Adresse" %>
+            <%= f.email_field :email, class: "form-control" %>
+            <div class="form_input_error"><%= error_for_form(@user, "description") %></div>
+        </div>
+    </fieldset>
+    <fieldset class="form-group">
+        <div class="col-xs-4">
+            <%= f.label "Passwort" %>
+            <%= f.password_field :password, class: "form-control" %>
+            <div class="form_input_error"><%= error_for_form(@user, "budget_in_euro") %></div>
+        </div>
+    </fieldset>
+    <fieldset class="form-group">
+        <div class="col-xs-4">
+            <%= f.label "Passwort bestätigen" %>
+            <%= f.password_field :password_confirmation, class: "form-control" %>
+        </div>
+    </fieldset>
+    <div class="col-xs-4">
+        <%= f.submit "Übernehmen", class: "btn btn-primary btn-xs" %>
+    </div>
+    <% end  %>
+</div>
