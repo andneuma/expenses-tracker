@@ -1,5 +1,4 @@
 class ExpenseListsController < ApplicationController
-  # helper_method :notify_members_about_their_status_after_update
 
   def notify_members_about_their_status_after_update(expense_list, members_before_update = [])
     members_after_update = expense_list.members
@@ -54,7 +53,6 @@ class ExpenseListsController < ApplicationController
     @old_expense_list = @expense_list
     @expense_list.update(expense_list_params)
 
-    current_members = @expense_list.members
     @errors = @expense_list.errors
 
     if @errors.any?
@@ -64,7 +62,7 @@ class ExpenseListsController < ApplicationController
       flash[:success] = "Änderungen erfolgreich übernommen"
       notify_members_about_their_status_after_update(@expense_list, @old_expense_list.members)
 
-      current_members.each do |member|
+      @expense_list.members.each do |member|
         Notifier.expense_list_attribute_changes(member, @expense_list, @old_expense_list).deliver_now
       end
 
@@ -74,8 +72,7 @@ class ExpenseListsController < ApplicationController
 
   def destroy
     @expense_list = ExpenseList.find(params[:id])
-    members = @expense_list.members
-    members.each { |member| Notifier.expense_list_deleted(member, @expense_list).deliver_now}
+    @expense_list.members.each { |member| Notifier.expense_list_deleted(member, @expense_list).deliver_now}
     @expense_list.destroy
 
     flash[:success] = "Liste wurde erfolgreich gelöscht"
