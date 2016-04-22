@@ -1,0 +1,28 @@
+<div class="container">
+  <h4>Administration Interface</h4>
+  <h6>Unapproved Users</h6>
+  <ul>
+    <table class="table">
+      <thead class="thead-default">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Date of subscription</th>
+          <th>Role</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.each do |user| %>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td><%= user.created_at %></td>
+          <td><%= user.role %></td>
+          <td><%= link_to '', edit_user_path(user), class: "btn glyphicon glyph-button glyphicon-pencil" %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </ul>
+</div>

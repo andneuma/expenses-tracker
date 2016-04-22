@@ -13,5 +13,10 @@ Rails.application.routes.draw do
   get 'signup' => 'users#new'
   post 'signup' => 'users#create'
 
-  root 'expense_lists#index'
+  get 'contact' => 'static_pages#contact'
+  get 'home' => 'static_pages#home'
+
+  get '/admin' => 'users#admin'
+
+  root 'static_pages#home'
 end

@@ -18,4 +18,7 @@ module ApplicationHelper
     object.errors.any? && object.errors[feature].first || ""
   end
 
+  def current_user
+    User.find(session[:user_id])
+  end
 end

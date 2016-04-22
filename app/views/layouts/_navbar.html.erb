@@ -13,9 +13,14 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><%= link_to "Ausgabenlisten anzeigen", expense_lists_path %></li>
-                <li><%= link_to "Login", login_path %></li>
-                <li><%= link_to "Sign up", signup_path %></li>
+                <% if session[:user_id] %>
+                    <li><%= link_to "Ausgabenlisten", expense_lists_path %></li>
+                    <li><%= link_to "Logout", logout_path %></li>
+                    <li><%= link_to 'Users', admin_path if current_user == "Admin" %></li>
+                <% else  %>
+                    <li><%= link_to "Login", login_path %></li>
+                    <li><%= link_to "Sign up", signup_path %></li>
+                <% end %>
             </ul>
         </div>
     </nav>

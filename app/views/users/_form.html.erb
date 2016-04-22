@@ -1,5 +1,5 @@
 <div class="container">
-  <%= form_for @user do |f| %>
+    <%= form_for @user do |f| %>
     <fieldset class="form-group">
         <div class="col-xs-4">
             <%= f.label 'Name'%>
@@ -27,6 +27,14 @@
             <%= f.password_field :password_confirmation, class: "form-control" %>
         </div>
     </fieldset>
+    <% if current_user.role == "Admin" %>
+        <fieldset class="form-group">
+            <div class="col-xs-4">
+                <%= f.label "Rolle festlegen" %>
+                <%= f.collection_select :role, User::ROLES, :to_s, :humanize, class: "form-control" %>
+            </div>
+        </fieldset>
+    <% end %>
     <div class="col-xs-4">
         <%= f.submit "Übernehmen", class: "btn btn-primary btn-xs" %>
     </div>
