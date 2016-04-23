@@ -1,30 +1,35 @@
-
 <%= form_for([@expense_list, @expense]) do |f| %>
   <fieldset class="form-group">
       <div class="col-xs-4">
-          <%= f.label 'Wo warst du einkaufen?' %>
+          <%= f.label 'Datum' %>
           <%= f.text_field :where, {class: 'form-control', placeholder: 'e.g. Lidl'}%>
           <div class="form_input_error"><%= error_for_form(@expense, "where") %></div>
       </div>
   </fieldset>
   <fieldset class="form-group">
       <div class="col-xs-4">
-          <%= f.label 'Wieviel € hast du ausgegeben?' %>
+          <%= f.label 'Wieviel € wurden ausgegeben?' %>
           <%= f.text_field :expenses_in_euro, {class: 'form-control', placeholder: '23,40'}%>
           <div class="form_input_error"><%= error_for_form(@expense, "expenses_in_euro") %></div>
       </div>
   </fieldset>
   <fieldset class="form-group">
       <div class="col-xs-4">
-          <%= f.label 'Wann warst du einkaufen?' %>
+          <%= f.label 'Wann wurde eingekauft?' %>
           <%= f.text_field :when, {class: 'form-control', placeholder: '23.04.1983'}%>
           <div class="form_input_error"><%= error_for_form(@expense, "when") %></div>
       </div>
   </fieldset>
   <fieldset class="form-group">
       <div class="col-xs-4">
-          <%= f.label 'Füge Kommentar hinzu (optional)' %>
+          <%= f.label 'Kommentar (optional)' %>
           <%= f.text_area :comment, {class: 'form-control', placeholder: 'Hab viel Kaffee gekauft (teuer!)'}%>
+      </div>
+  </fieldset>
+  <fieldset class="form-group">
+      <div class="col-xs-4">
+          <%= f.label 'Wer hat eingekauft:' %>
+          <%= f.collection_select :user_id, User.all, :id, :name %>
       </div>
   </fieldset>
   <div class="col-xs-4">

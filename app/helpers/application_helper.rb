@@ -21,4 +21,12 @@ module ApplicationHelper
   def current_user
     User.find(session[:user_id])
   end
+
+  def user_names
+    User.all.map { |user| user.name }
+  end
+
+  def user_ids
+    User.all.map { |user| user.id }
+  end
 end

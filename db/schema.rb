@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160422134842) do
+ActiveRecord::Schema.define(version: 20160422152316) do
 
   create_table "expense_lists", force: :cascade do |t|
     t.string   "name"
@@ -34,10 +34,12 @@ ActiveRecord::Schema.define(version: 20160422134842) do
     t.datetime "updated_at",       null: false
     t.integer  "expense_list_id"
     t.integer  "members_id"
+    t.integer  "user_id"
   end
 
   add_index "expenses", ["expense_list_id"], name: "index_expenses_on_expense_list_id"
   add_index "expenses", ["members_id"], name: "index_expenses_on_members_id"
+  add_index "expenses", ["user_id"], name: "index_expenses_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

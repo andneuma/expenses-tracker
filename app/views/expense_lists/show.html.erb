@@ -41,7 +41,7 @@
             </td>
             <td><%= expense.when.strftime("%d.%m") %></td>
             <td><%= expense.where %></td>
-            <td></td>
+            <td><%= expense.user.name %></td>
             <td><%= "#{expense.expenses_in_euro}€" %></td>
             <td></td>
             <td><%= expense.comment %></td>
