@@ -11,18 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160411154553) do
+ActiveRecord::Schema.define(version: 20160512140721) do
 
   create_table "expense_lists", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.decimal  "budget_in_euro"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.integer  "expense_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.text     "members",        default: "--- []\n"
   end
-
-  add_index "expense_lists", ["expense_id"], name: "index_expense_lists_on_expense_id"
 
   create_table "expenses", force: :cascade do |t|
     t.string   "where"
@@ -32,8 +30,20 @@ ActiveRecord::Schema.define(version: 20160411154553) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "expense_list_id"
+    t.integer  "user_id"
+    t.string   "cash_desk"
   end
 
   add_index "expenses", ["expense_list_id"], name: "index_expenses_on_expense_list_id"
+  add_index "expenses", ["user_id"], name: "index_expenses_on_user_id"
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "is_admin",        default: false
+  end
 
 end

@@ -1,4 +1,5 @@
 class ExpenseListsController < ApplicationController
+  # REST functions
   def index
     @expense_lists = ExpenseList.all
   end
@@ -13,16 +14,14 @@ class ExpenseListsController < ApplicationController
   end
 
   def create
-    # TODO: Implement error handling
     @expense_list = ExpenseList.new(expense_list_params)
-    @expense_list.save
-    @errors = @expense_list.errors
-
-    unless @errors.any?
+    
+    if @expense_list.save
       flash[:success] = "Neue Ausgabenliste angelegt: #{@expense_list.name}"
       render :show
     else
-      flash[:danger] ="Fehler! Ausgabenliste #{@expense_list.name} konnte nicht angelegt werden"
+      @errors = @expense_list.errors
+      flash[:danger] = "Fehler! Ausgabenliste #{@expense_list.name} konnte nicht angelegt werden"
       render :new
     end
   end
@@ -33,20 +32,20 @@ class ExpenseListsController < ApplicationController
 
   def update
     @expense_list = ExpenseList.find(params[:id])
-    @expense_list.update(expense_list_params)
-    @errors = @expense_list.errors
 
-    unless @errors.any?
-      flash[:success] = "Änderungen erfolgreich übernommen"
+    if @expense_list.update(expense_list_params)
+      flash[:success] = 'Änderungen erfolgreich übernommen'
       render :show
     else
-      flash[:danger] = "Änderungen konnten nicht übernommen werden"
+      @errors = @expense_list.errors
+      flash[:danger] = 'Änderungen konnten nicht übernommen werden'
       render :edit
     end
   end
 
   def destroy
-    ExpenseList.find(params[:id]).destroy
+    @expense_list = ExpenseList.find(params[:id])
+    @expense_list.destroy
 
     flash[:success] = "Liste wurde erfolgreich gelöscht"
 
@@ -54,6 +53,7 @@ class ExpenseListsController < ApplicationController
   end
 
   private
+
   def expense_list_params
     params.require(:expense_list).permit(:name, :description, :budget_in_euro)
   end

@@ -1,9 +1,6 @@
 require 'test_helper'
 
 class ExpensesControllerTest < ActionController::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
 
   def setup
     @expense_list = expense_lists :Essensliste

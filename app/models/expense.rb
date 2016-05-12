@@ -1,5 +1,8 @@
 class Expense < ActiveRecord::Base
+	CASH_DESK = %w{bar konto}
+	
   belongs_to :expense_list
+  belongs_to :user
 
   validates :where, presence: true
   validates_date :when, on_or_before: -> { Date.current }
