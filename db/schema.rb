@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160512134809) do
+ActiveRecord::Schema.define(version: 20160512140721) do
 
   create_table "expense_lists", force: :cascade do |t|
     t.string   "name"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20160512134809) do
     t.datetime "updated_at",       null: false
     t.integer  "expense_list_id"
     t.integer  "user_id"
+    t.string   "cash_desk"
   end
 
   add_index "expenses", ["expense_list_id"], name: "index_expenses_on_expense_list_id"

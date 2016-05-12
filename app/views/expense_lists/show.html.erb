@@ -1,13 +1,6 @@
 <div class="container">
     <h4><%= @expense_list.name %></h4>
     <small class="text-muted"><%= @expense_list.description %></small>
-    <p>
-        <small class="text-muted">List members:
-            <% @expense_list.members.each do |member| %>
-                <%= mail_to member %>
-            <% end %>
-        </small>
-    </p>
 </div>
 
 <div class="container">
@@ -41,9 +34,9 @@
             </td>
             <td><%= expense.when.strftime("%d.%m") %></td>
             <td><%= expense.where %></td>
-            <td><%= expense.user.name %></td>
+            <td><%= expense.user && expense.user.name || "???" %></td>
             <td><%= "#{expense.expenses_in_euro}€" %></td>
-            <td></td>
+            <td><%= expense.cash_desk %></td>
             <td><%= expense.comment %></td>
         </tr>
         <% end %>

@@ -61,6 +61,6 @@ class ExpensesController < ApplicationController
   private
 
   def expense_params
-    params.require(:expense).permit(:where, :when, :comment, :expenses_in_euro, :user_id)
+    params.require(:expense).permit(:where, :when, :comment, :expenses_in_euro, :user_id, :cash_desk)
   end
 end

@@ -32,6 +32,12 @@
           <%= f.collection_select :user_id, User.all, :id, :name %>
       </div>
   </fieldset>
+  <fieldset class="form-group">
+      <div class="col-xs-4">
+          <%= f.label 'Welche Kasse?' %>
+          <%= f.collection_select :cash_desk, Expense::CASH_DESK, :to_s, :humanize %>
+      </div>
+  </fieldset>
   <div class="col-xs-4">
       <%= f.submit "Eintragen", class: "btn btn-primary" %>
       <%= link_to "Zurück", @expense_list, class: "btn btn-primary" %>
