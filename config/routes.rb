@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users
+  # resources :users
 
   resources :expense_lists do
     resources :expenses
@@ -9,9 +9,6 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
 
   get '/logout' => 'sessions#destroy'
-
-  get 'signup' => 'users#new'
-  post 'signup' => 'users#create'
 
   get 'contact' => 'static_pages#contact'
   get 'home' => 'static_pages#home'

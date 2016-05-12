@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160422152316) do
+ActiveRecord::Schema.define(version: 20160512134809) do
 
   create_table "expense_lists", force: :cascade do |t|
     t.string   "name"
@@ -19,11 +19,8 @@ ActiveRecord::Schema.define(version: 20160422152316) do
     t.decimal  "budget_in_euro"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.integer  "expense_id"
     t.text     "members",        default: "--- []\n"
   end
-
-  add_index "expense_lists", ["expense_id"], name: "index_expense_lists_on_expense_id"
 
   create_table "expenses", force: :cascade do |t|
     t.string   "where"
@@ -33,21 +30,19 @@ ActiveRecord::Schema.define(version: 20160422152316) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "expense_list_id"
-    t.integer  "members_id"
     t.integer  "user_id"
   end
 
   add_index "expenses", ["expense_list_id"], name: "index_expenses_on_expense_list_id"
-  add_index "expenses", ["members_id"], name: "index_expenses_on_members_id"
   add_index "expenses", ["user_id"], name: "index_expenses_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.string   "role"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "is_admin",        default: false
   end
 
 end
