@@ -17,14 +17,13 @@ class ExpensesController < ApplicationController
   def create
     @expense_list = ExpenseList.find(params[:expense_list_id])
     @expense = @expense_list.expenses.create(expense_params)
-    @expense.save
-    @errors = @expense.errors
 
-    unless @errors.any?
-      flash[:success] = "Neue Ausgabe erfolgreich angelegt"
+    if @expense.save
+      flash[:success] = 'Neue Ausgabe erfolgreich angelegt'
       redirect_to expense_list_path(@expense_list)
     else
-      flash[:danger] = "Ausgabe konnte nicht angelegt werden"
+      @errors = @expense.errors
+      flash[:danger] = 'Ausgabe konnte nicht angelegt werden'
       render :new
     end
   end
@@ -37,14 +36,13 @@ class ExpensesController < ApplicationController
   def update
     @expense_list = ExpenseList.find(params[:expense_list_id])
     @expense = @expense_list.expenses.find(params[:id])
-    @expense.update(expense_params)
-    @errors = @expense.errors
 
-    unless @errors.any?
-      flash[:success] = "Änderungen erfolgreich übernommen"
+    if @expense.update(expense_params)
+      flash[:success] = 'Änderungen erfolgreich übernommen'
       redirect_to expense_list_path(@expense_list)
     else
-      flash[:danger] = "Änderungen konnten nicht übernommen werden"
+      @errors = @expense.errors
+      flash[:danger] = 'Änderungen konnten nicht übernommen werden'
       render :edit
     end
   end
@@ -53,7 +51,7 @@ class ExpensesController < ApplicationController
     @expense_list = ExpenseList.find(params[:expense_list_id])
     @expense_list.expenses.find(params[:id]).destroy
 
-    flash[:success] = "Liste erfolgreich gelöscht"
+    flash[:success] = 'Liste erfolgreich gelöscht'
 
     redirect_to expense_list_path(@expense_list)
   end

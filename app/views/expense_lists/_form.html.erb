@@ -21,12 +21,6 @@
             <div class="form_input_error"><%= error_for_form(@expense_list, "budget_in_euro") %></div>
         </div>
     </fieldset>
-    <fieldset class="form-group">
-        <div class="col-xs-4">
-            <%= f.label "Emailadressen Listenmitglieder" %>
-            <%= f.text_field :members_list, {class: "form-control", placeholder: "Kerstin@posteo.de, Lila@rpi.org"} %>
-        </div>
-    </fieldset>
     <div class="col-xs-4">
         <%= f.submit "Übernehmen", class: "btn btn-primary btn-xs" %>
         <%= link_to "Zurück", expense_lists_path, class: "btn btn-primary btn-xs" %>

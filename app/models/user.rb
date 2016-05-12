@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  ROLES = %w[Unapproved User Admin]
-  
   has_secure_password
   has_many :expenses
 
