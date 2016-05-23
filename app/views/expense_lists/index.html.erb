@@ -1,23 +1,22 @@
-<div class="container">
-    <div class="col-lg-12" id="expense-list-panel-group">
-        <div class="panel-group">
+<div class='container'>
+    <div class='col-lg-12' id='expense-list-panel-group'>
+        <div class='panel-group'>
             <% if @expense_lists.any? %>
             <% @expense_lists.each do |expense_list| %>
-            <div class="col-md-4 col-md-4 col-md-4">
-                <div class="panel panel-default">
+            <div class='col-md-4 col-md-4 col-md-4'>
+                <div class='panel panel-default'>
                     <%= link_to expense_list_path(expense_list) do %>
-                    <div class="panel-heading">
+                    <div class='panel-heading'>
                         <%= expense_list.name %>
                     </div>
                     <% end %>
-                    <div class="panel-body">
-                        <p class="text-muted">
+                    <div class='panel-body'>
+                        <p class='text-muted'>
                             <%= expense_list.description %>
                         </p>
                     </div>
-                    <div class="panel-footer">
-                        <b><%= "#{total_expenses_in_expense_list expense_list}€" %></v>
-                        <small><%= "seit Erstellung (#{expense_list.created_at.to_date})" %></small>
+                    <div class='panel-footer'>
+                        <b><%= "#{expenses_in_current_month}€" %></v>
                     </div>
                 </div>
             </div>

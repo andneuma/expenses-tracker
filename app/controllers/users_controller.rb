@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   def edit
     @user = User.find(params[:id])
   end
@@ -16,10 +15,25 @@ class UsersController < ApplicationController
     end
   end
 
+  def change_passwd
+    @user = User.find(params[:id])
+
+    if @user.update(user_params)
+      flash[:success] = 'Änderungen erfolgreich übernommen'
+      redirect_to root_path
+    else
+      flash[:danger] = 'Änderungen konnten nicht übernommen werden!'
+      render 'edit'
+    end
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :is_admin)
+    params.require(:user).permit(:name, :email)
   end
 
+  def password_params
+    params.require(:user).permit(:password, :password_confirmation)
+  end
 end

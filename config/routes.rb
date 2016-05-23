@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # resources :users
+  resources :users
 
   resources :expense_lists do
     resources :expenses
@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   get 'contact' => 'static_pages#contact'
   get 'home' => 'static_pages#home'
 
-  get '/admin' => 'users#admin'
+  get '/users/:id/change_passwd' => 'users#change_passwd', as: 'change_passwd'
+  patch '/users/:id/change_passwd' => 'users#update'
 
-  root 'static_pages#home'
+  root 'expense_lists#index'
 end

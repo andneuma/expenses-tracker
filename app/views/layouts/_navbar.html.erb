@@ -15,9 +15,10 @@
             <ul class="nav navbar-nav navbar-right">
                 <% if session[:user_id] %>
                     <li><%= link_to "Ausgabenlisten", expense_lists_path %></li>
-                    <li><%= link_to "Logout", logout_path %></li>
+                    <li><%= link_to "User-Einstellungen", edit_user_path(session[:user_id]) %></li>
+                    <li><%= link_to "Ausloggen", logout_path %></li>
                 <% else  %>
-                    <li><%= link_to "Login", login_path %></li>
+                    <li><%= link_to "Einloggen", login_path %></li>
                 <% end %>
             </ul>
         </div>
