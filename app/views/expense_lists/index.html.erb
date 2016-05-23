@@ -17,10 +17,9 @@
               </p>
             </div>
             <div class='panel-footer'>
-              <small>Expenses in
-                <%= "#{current_month_name}" %>:
-              </small>
+              <small>Expenses in <%= "#{current_month_name}" %>:</small>
               <b><%= "#{expenses_in_current_month}€" %></b>
+              <small><%= "(#{euros_left_in_current_month(expense_list)}€ left)" if expense_list.budget_in_euro %> </small>
             </div>
           </div>
         </div>

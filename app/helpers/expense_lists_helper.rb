@@ -14,4 +14,9 @@ module ExpenseListsHelper
     expenses_in_current_month = Expense.all.select { |e| e.when.strftime('%m') == current_month }
     expenses_in_current_month.map(&:expenses_in_euro).reduce(&:+)
   end
+
+  def euros_left_in_current_month(expense_list)
+    budget = expense_list.budget_in_euro
+    budget - expenses_in_current_month if budget
+  end
 end
