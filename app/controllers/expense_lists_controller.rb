@@ -1,4 +1,6 @@
 class ExpenseListsController < ApplicationController
+  before_action :require_authentication
+
   # REST functions
   def index
     @expense_lists = ExpenseList.all
@@ -15,7 +17,7 @@ class ExpenseListsController < ApplicationController
 
   def create
     @expense_list = ExpenseList.new(expense_list_params)
-    
+
     if @expense_list.save
       flash[:success] = "Neue Ausgabenliste angelegt: #{@expense_list.name}"
       render :show
@@ -56,5 +58,12 @@ class ExpenseListsController < ApplicationController
 
   def expense_list_params
     params.require(:expense_list).permit(:name, :description, :budget_in_euro)
+  end
+
+  def require_authentication
+    unless session[:user_id]
+      flash[:danger] = 'Access to this page has been restricted. Please login first!'
+      redirect_to login_path
+    end
   end
 end

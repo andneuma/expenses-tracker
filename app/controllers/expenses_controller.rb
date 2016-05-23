@@ -1,4 +1,6 @@
 class ExpensesController < ApplicationController
+  before_action :require_authentication
+
   def index
     expense_list = ExpenseList.find(params[:expense_list_id])
     @expenses = expense_list.expenses
@@ -60,5 +62,12 @@ class ExpensesController < ApplicationController
 
   def expense_params
     params.require(:expense).permit(:where, :when, :comment, :expenses_in_euro, :user_id, :cash_desk)
+  end
+
+  def require_authentication
+    unless session[:user_id]
+      flash[:danger] = 'Access to this page has been restricted. Please login first!'
+      redirect_to login_path
+    end
   end
 end

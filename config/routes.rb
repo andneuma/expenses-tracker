@@ -13,8 +13,5 @@ Rails.application.routes.draw do
   get 'contact' => 'static_pages#contact'
   get 'home' => 'static_pages#home'
 
-  get '/users/:id/change_passwd' => 'users#change_passwd', as: 'change_passwd'
-  patch '/users/:id/change_passwd' => 'users#update'
-
   root 'static_pages#home'
 end
