@@ -7,11 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="container main-container">
-    <%= render 'layouts/navbar' %>
-    <%= render partial: 'shared/flash_messages' %>
-    <%= yield %>
-    <!-- <%= debug(params) %> -->
-  </div>
+  <%= render 'layouts/navbar' %>
+  <%= render partial: 'shared/flash_messages' %>
+  <%= yield %>
+  <!-- <%= debug(params) %> -->
 </body>
 </html>
