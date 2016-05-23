@@ -16,5 +16,5 @@ Rails.application.routes.draw do
   get '/users/:id/change_passwd' => 'users#change_passwd', as: 'change_passwd'
   patch '/users/:id/change_passwd' => 'users#update'
 
-  root 'expense_lists#index'
+  root 'static_pages#home'
 end

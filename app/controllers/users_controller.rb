@@ -5,19 +5,6 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-
-    if @user.update(user_params)
-      flash[:success] = 'Änderungen erfolgreich übernommen'
-      redirect_to root_path
-    else
-      flash[:danger] = 'Änderungen konnten nicht übernommen werden!'
-      render 'edit'
-    end
-  end
-
-  def change_passwd
-    @user = User.find(params[:id])
-
     if @user.update(user_params)
       flash[:success] = 'Änderungen erfolgreich übernommen'
       redirect_to root_path
