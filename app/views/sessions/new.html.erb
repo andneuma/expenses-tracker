@@ -1,8 +1,8 @@
 <div class="container">
-    <h4>Einloggen</h4>
-    <%= form_for(:sessions, url: login_path) do |f| %>
-      <%= f.label 'Email Adresse' %><%= f.email_field :email %>
-      <%= f.label 'Passwort' %><%= f.password_field :password %>
-      <%= f.submit 'Einloggen', class: "btn btn-primary btn-xs" %>
-    <% end %>
+  <h4>Einloggen</h4>
+  <%= form_for(:sessions, url: login_path) do |f| %>
+  <%= f.label 'Email Adresse' %><%= f.email_field :email %>
+  <%= f.label 'Passwort' %><%= f.password_field :password %>
+  <%= f.submit 'Einloggen', class: "btn btn-primary btn-xs" %>
+  <% end %>
 </div>

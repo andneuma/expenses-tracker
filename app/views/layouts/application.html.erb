@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>ExpensesTracker</title>
-        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-        <%= csrf_meta_tags %>
-    </head>
-    <body>
-      <div class="container main-container">
-        <%= render 'layouts/navbar' %>
-        <%= render partial: 'shared/flash_messages' %>
-        <%= yield %>
-        <!-- <%= debug(params) %> -->
-      </div>
-    </body>
+<head>
+  <title>ExpensesTracker</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="container main-container">
+    <%= render 'layouts/navbar' %>
+    <%= render partial: 'shared/flash_messages' %>
+    <%= yield %>
+    <!-- <%= debug(params) %> -->
+  </div>
+</body>
 </html>

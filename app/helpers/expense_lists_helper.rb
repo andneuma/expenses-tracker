@@ -12,6 +12,6 @@ module ExpenseListsHelper
   def expenses_in_current_month
     current_month = Date.today.strftime('%m')
     expenses_in_current_month = Expense.all.select { |e| e.when.strftime('%m') == current_month }
-    expenses_in_current_month.map { |e| e.expenses_in_euro }.reduce(&:+)
+    expenses_in_current_month.map(&:expenses_in_euro).reduce(&:+)
   end
 end

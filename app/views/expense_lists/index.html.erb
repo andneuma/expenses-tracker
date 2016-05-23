@@ -1,38 +1,39 @@
 <div class='container'>
-    <div class='col-lg-12' id='expense-list-panel-group'>
-        <div class='panel-group'>
-            <% if @expense_lists.any? %>
-            <% @expense_lists.each do |expense_list| %>
-            <div class='col-md-4 col-md-4 col-md-4'>
-                <div class='panel panel-default'>
-                    <%= link_to expense_list_path(expense_list) do %>
-                    <div class='panel-heading'>
-                        <%= expense_list.name %>
-                    </div>
-                    <% end %>
-                    <div class='panel-body'>
-                        <p class='text-muted'>
-                            <%= expense_list.description %>
-                        </p>
-                    </div>
-                    <div class='panel-footer'>
-                        <b><%= "#{expenses_in_current_month}€" %></v>
-                    </div>
-                </div>
-            </div>
-
-            <% end %>
-        <% else %>
-            <div class="container">
-                <p>
-                    Es gibt noch keine Liste...
-                </p>
+  <div class="row">
+    <div class='panel-group' id='expense-list-panel-group'>
+      <% if @expense_lists.any? %>
+      <% @expense_lists.each do |expense_list| %>
+      <div class="row">
+        <div class='col-md-4 col-md-4 col-md-4'>
+          <div class='panel panel-default'>
+            <%= link_to expense_list_path(expense_list) do %>
+            <div class='panel-heading'>
+              <%= expense_list.name %>
             </div>
             <% end %>
+            <div class='panel-body'>
+              <p class='text-muted'>
+                <%= expense_list.description %>
+              </p>
+            </div>
+            <div class='panel-footer'>
+              <small>Expenses in
+                <%= "#{current_month_name}" %>:
+              </small>
+              <b><%= "#{expenses_in_current_month}€" %></b>
+            </div>
+          </div>
         </div>
-
+        <% end %>
+        <% else %>
+        <p>There is no expense list yet...</p>
+        <% end %>
+      </div>
     </div>
-    <p>
-        <%= link_to "Neue Liste anlegen", new_expense_list_path, {class: 'btn btn-default btn-primary btn-success'} %>
-    </p>
+  </div>
+  <div class="row">
+    <div class='col-md-4 col-md-4 col-md-4'>
+      <%= link_to "Create new expense list", new_expense_list_path, {class: 'btn btn-default btn-primary btn-success'} %>
+    </div>
+  </div>
 </div>

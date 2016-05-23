@@ -1,16 +1,16 @@
 <table class="table table-sm">
-    <thead>
-        <th>asd</th>
-        <th>Datum</th>
-        <th>Einkauf wo</th>
-        <th>Summe Ausgaben</th>
-    </thead>
-    <tbody>
-        <% @expenses.each do |expense| %>
-        <td>asd</td>
-        <td><%= expense.when %></td>
-        <td><%= expense.where %></td>
-        <td><%= expense.expenses_in_euro %></td>
-        <% end %>
-    </tbody>
+  <thead>
+    <th>asd</th>
+    <th>Date</th>
+    <th>Where</th>
+    <th>Sum of expenses</th>
+  </thead>
+  <tbody>
+    <% @expenses.each do |expense| %>
+    <td>asd</td>
+    <td><%= expense.when %></td>
+    <td><%= expense.where %></td>
+    <td><%= expense.expenses_in_euro %></td>
+    <% end %>
+  </tbody>
 </table>
