@@ -31,6 +31,14 @@
       </span>
     </div>
   </fieldset>
+
+  <fieldset class="form-group row}">
+    <div class="col-xs-3">
+      <%= f.check_box :notifications_enabled %>
+      <%= f.label 'Enable email notifications for list' %>
+    </div>
+  </fieldset>
+
   <div class="row">
     <div class="col-xs-2">
       <%= f.submit "Submit", class: "btn btn-primary btn-success" %>
