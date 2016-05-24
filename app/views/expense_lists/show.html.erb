@@ -21,11 +21,10 @@
         <th class="col-md-1">Who</th>
         <th class="col-md-1">How much</th>
         <th class="col-md-1">Cash pool</th>
-        <th>Comment</th>
       </thead>
       <tbody>
         <!--  EXPENSES IN RESPECTIVE MONTH-->
-        <%= render partial: 'expenses_in_month', locals: {expenses: expenses} %>
+        <%= render partial: 'expenses_in_month', locals: {expenses: expenses, expense_list: @expense_list} %>
       </tbody>
     </table>
   </div>
