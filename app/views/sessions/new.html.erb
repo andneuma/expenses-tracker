@@ -1,8 +1,20 @@
-<div class="container">
-  <h4>Einloggen</h4>
+<div class="container-fluid">
+  <h4>Login</h4>
   <%= form_for(:sessions, url: login_path) do |f| %>
-  <%= f.label 'Email Adresse' %><%= f.email_field :email %>
-  <%= f.label 'Passwort' %><%= f.password_field :password %>
-  <%= f.submit 'Einloggen', class: "btn btn-primary btn-xs" %>
+  <fieldset class="form-group row #{"has-danger" if f.object.errors.include?(:email)}">
+    <div class="col-xs-3">
+      <%= f.text_field :email, {class: "form-control", placeholder: "Schnipo@Schranke.de"} %>
+    </div>
+  </fieldset>
+  <fieldset class="form-group row #{"has-danger" if f.object.errors.include?(:password)}">
+    <div class="col-xs-3">
+      <%= f.password_field :password, {class: "form-control", placeholder: "e.g. Essenseinkäufe"} %>
+    </div>
+  </fieldset>
+  <div class="row">
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs2">
+      <%= f.submit "Submit", class: "btn btn-primary btn-success" %>
+    </div>
+  </div>
   <% end %>
 </div>
