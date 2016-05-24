@@ -37,3 +37,4 @@ test:db
 time:zones:all
 tmp:clear
 tmp:create
+weekly_digest
