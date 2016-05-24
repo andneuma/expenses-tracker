@@ -1,11 +1,11 @@
-<div class="container">
+<div class="container-fluid">
   <h2><%= @expense_list.name %></h2>
   <p>
     <p class="text-muted"><%= @expense_list.description %></p>
   </p>
 </div>
 
-<div class="container">
+<div class="container-fluid">
   <!--  YEAR -->
   <% expenses_in_year(@expense_list.expenses).each do |year, expenses| %>
   <h3><%= year %></h3>
