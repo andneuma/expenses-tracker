@@ -6,16 +6,22 @@ module ExpenseListsHelper
   end
 
   def expenses_by_months(expenses)
-    expenses.group_by { |e| e[:when].month }.sort.map { |month, expense| [Date::MONTHNAMES[month], expense] }
+    expenses.group_by { |e| e[:when].month }.sort.map { |month, expense| [month, expense] }
   end
 
-  def expenses_in_month(expense_list, month)
-    expenses = expense_list.expenses.select { |e| e.when.strftime('%m') == month }
-    expenses.map(&:expenses_in_euro).reduce(&:+) || 0
+  def sum_of_exp_in_month(expense_list, month, year)
+    expenses = expense_list.expenses.select do |e|
+      e.when.strftime('%m').to_i == month.to_i && e.when.strftime('%Y').to_i == year.to_i
+    end
+    expenses.map(&:expenses_in_euro).reduce(&:+).to_i || 0
   end
 
-  def euros_left_in_month(expense_list, month)
+  def euros_left_in_month(expense_list, month, year)
     budget = expense_list.budget_in_euro
-    budget - expenses_in_month(expense_list, month) if budget
+    budget - sum_of_exp_in_month(expense_list, month) if budget
+  end
+
+  def given_month_is_current_month(month, year)
+    month.to_i == current_month.to_i && year.to_i == current_year.to_i
   end
 end

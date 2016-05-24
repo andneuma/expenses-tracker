@@ -11,8 +11,8 @@
   <h3><%= year %></h3>
   <!--  MONTH TABLE LAYOUT-->
   <% expenses_by_months(expenses).each do |month, expenses| %>
-  <div class="table_placeholder<%= " current-month-placeholder" if month == current_month_name %>">
-    <h4> <%= month %> </h4>
+  <div class="table_placeholder<%= " current-month-placeholder" if given_month_is_current_month(month, year) %>">
+    <h4> <%= month_name(month) %> </h4>
     <table class="table table-condensed table-hover expense-table">
       <thead class="month-row">
         <th class="hidden-xs-up"></th>
@@ -24,7 +24,7 @@
       </thead>
       <tbody>
         <!--  EXPENSES IN RESPECTIVE MONTH-->
-        <%= render partial: 'expenses_in_month', locals: {expenses: expenses, expense_list: @expense_list} %>
+        <%= render partial: 'expenses_in_month', locals: {expenses: expenses, expense_list: @expense_list, month: month, year: year} %>
       </tbody>
     </table>
   </div>

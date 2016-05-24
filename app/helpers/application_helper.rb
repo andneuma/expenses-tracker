@@ -30,10 +30,19 @@ module ApplicationHelper
     User.all.map(&:id)
   end
 
+  def month_name(month)
+    Date::MONTHNAMES[month]
+  end
+
   def current_month_name
     Date::MONTHNAMES[Date.today.month]
   end
 
   def current_month
-    Date.today.strftime('%m')  end
+    Date.today.strftime('%m')
   end
+
+  def current_year
+    Date.today.strftime('%Y')
+  end
+end
