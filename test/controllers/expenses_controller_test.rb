@@ -3,6 +3,9 @@ require 'test_helper'
 class ExpensesControllerTest < ActionController::TestCase
 
   def setup
+    @user = users :Petra
+    session[:user_id] = @user.id
+    
     @expense_list = expense_lists :Essensliste
     @expense = expenses :expensive
   end

@@ -18,7 +18,7 @@ module ExpenseListsHelper
 
   def euros_left_in_month(expense_list, month, year)
     budget = expense_list.budget_in_euro
-    budget - sum_of_exp_in_month(expense_list, month) if budget
+    budget - sum_of_exp_in_month(expense_list, month, year) if budget
   end
 
   def given_month_is_current_month(month, year)
