@@ -1,63 +1,41 @@
 <div class="container">
-  <h4><%= @expense_list.name %></h4>
+  <h2><%= @expense_list.name %></h2>
   <p>
-    <small class="text-muted"><%= @expense_list.description %></small>
+    <p class="text-muted"><%= @expense_list.description %></p>
   </p>
 </div>
 
 <div class="container">
-  <!--  YEAR-->
+  <!--  YEAR -->
   <% expenses_in_year(@expense_list.expenses).each do |year, expenses| %>
-  <h4><%= year %></h4>
-  <table class="table table-condensed table-hover">
-    <thead>
-      <th class="hidden-xs-up"></th>
-      <th class="col-md-1">Date</th>
-      <th class="col-md-1">Where</th>
-      <th class="col-md-1">Who</th>
-      <th class="col-md-1">How much</th>
-      <th class="col-md-1">Cash pool</th>
-      <th>Kommentar</th>
-    </thead>
-    <tbody>
-      <!--  MONTH -->
-      <% expenses_in_months(expenses).each do |month, expenses| %>
-      <tr>
-        <th class="month-row"></th>
-        <th colspan="6" class="month-row"><%= month %></th>
-      </tr>
-      <!--  EXPENSES IN RESPECTIVE MONTH-->
-      <% expenses.each do |expense| %>
-      <tr>
-        <td class="col-md-1">
-          <%= link_to '', edit_expense_list_expense_path(@expense_list, expense), {class: 'btn btn-default btn-xs glyphicon glyphicon-pencil glyph-button'} %>
-          <%= link_to '', expense_list_expense_path(@expense_list, expense), {method: "delete", data: { confirm: "Bist du dir sicher, dass du den Eintrag löschen willst?" }, class: 'btn btn-default btn-xs glyphicon glyphicon-trash glyph-button'} %>
-        </div>
-      </td>
-      <td><%= expense.when.strftime("%d.%m") %></td>
-      <td><%= expense.where %></td>
-      <td><%= expense.user && expense.user.name || "???" %></td>
-      <td><%= "#{expense.expenses_in_euro}€" %></td>
-      <td><%= expense.cash_desk %></td>
-      <td><%= expense.comment %></td>
-    </tr>
-    <% end %>
-    <tr>
-      <td class="monthly-totals-row" colspan=4></td>
-      <td class="monthly-totals-row"><b><%= sum_expenses_collection expenses %></td></b>
-      <td class="monthly-totals-row" colspan="2"></td>
-    </tr>
-    <tr>
-      <td colspan="7" class="spacer-row"></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-<% end  %>
-<p>
-  <%= link_to "Add expense", new_expense_list_expense_path(@expense_list), {class: "btn btn-success btn-xs"} %>
-  <%= link_to "Modify list", edit_expense_list_path(@expense_list), {class: "btn btn-warning btn-xs"} %>
-  <%= link_to "Delete list", expense_list_path(@expense_list), {method: "delete", data: { confirm: "Bist du dir sicher, dass du die Liste löschen willst?" }, class: 'btn btn-danger btn-xs'} %>
-  <%= link_to 'Back', expense_lists_path, {class: "btn btn-primary btn-xs"} %>
-</p>
+  <h3><%= year %></h3>
+  <!--  MONTH TABLE LAYOUT-->
+  <% expenses_in_months(expenses).each do |month, expenses| %>
+  <div class="table_placeholder<%= " current-month-placeholder" if month == current_month_name %>">
+    <h4> <%= month %> </h4>
+    <table class="table table-condensed table-hover expense-table">
+      <thead class="month-row">
+        <th class="hidden-xs-up"></th>
+        <th class="col-md-1">Date</th>
+        <th class="col-md-1">Where</th>
+        <th class="col-md-1">Who</th>
+        <th class="col-md-1">How much</th>
+        <th class="col-md-1">Cash pool</th>
+        <th>Comment</th>
+      </thead>
+      <tbody>
+        <!--  EXPENSES IN RESPECTIVE MONTH-->
+        <%= render partial: 'expenses_in_month', locals: {expenses: expenses} %>
+      </tbody>
+    </table>
+  </div>
+  <% end %>
+  <% end  %>
+  <br>
+  <p>
+    <%= link_to "Add expense", new_expense_list_expense_path(@expense_list), {class: "btn btn-success btn-xs"} %>
+    <%= link_to "Modify list", edit_expense_list_path(@expense_list), {class: "btn btn-warning btn-xs"} %>
+    <%= link_to "Delete list", expense_list_path(@expense_list), {method: "delete", data: { confirm: "Bist du dir sicher, dass du die Liste löschen willst?" }, class: 'btn btn-danger btn-xs'} %>
+    <%= link_to 'Back', expense_lists_path, {class: "btn btn-primary btn-xs"} %>
+  </p>
 </div>

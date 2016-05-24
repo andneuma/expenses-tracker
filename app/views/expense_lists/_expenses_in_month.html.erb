@@ -1,0 +1,22 @@
+<% expenses.each do |expense| %>
+<tr>
+  <td class="col-md-1">
+    <%= link_to '', edit_expense_list_expense_path(@expense_list, expense), {class: 'btn btn-default btn-xs glyphicon glyphicon-pencil glyph-button'} %>
+    <%= link_to '', expense_list_expense_path(@expense_list, expense), {method: "delete", data: { confirm: "Bist du dir sicher, dass du den Eintrag löschen willst?" }, class: 'btn btn-default btn-xs glyphicon glyphicon-trash glyph-button'} %>
+  </td>
+  <td><%= expense.when.strftime("%d.%m") %></td>
+  <td><%= expense.where %></td>
+  <td><%= expense.user && expense.user.name || "???" %></td>
+  <td><%= "#{expense.expenses_in_euro}€" %></td>
+  <td><%= expense.cash_desk %></td>
+  <td><%= expense.comment %></td>
+</tr>
+<% end %>
+<tr>
+  <td class="monthly-totals-row" colspan=4></td>
+  <td class="monthly-totals-row"><b><%= sum_expenses_collection expenses %></td></b>
+  <td class="monthly-totals-row" colspan="2"></td>
+</tr>
+<tr>
+  <td colspan="7" class="spacer-row"></td>
+</tr>
