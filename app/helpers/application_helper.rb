@@ -33,4 +33,7 @@ module ApplicationHelper
   def current_month_name
     Date::MONTHNAMES[Date.today.month]
   end
-end
+
+  def current_month
+    Date.today.strftime('%m')  end
+  end

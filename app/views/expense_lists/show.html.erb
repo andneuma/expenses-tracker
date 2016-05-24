@@ -7,10 +7,10 @@
 
 <div class="container-fluid">
   <!--  YEAR -->
-  <% expenses_in_year(@expense_list.expenses).each do |year, expenses| %>
+  <% expenses_by_year(@expense_list.expenses).each do |year, expenses| %>
   <h3><%= year %></h3>
   <!--  MONTH TABLE LAYOUT-->
-  <% expenses_in_months(expenses).each do |month, expenses| %>
+  <% expenses_by_months(expenses).each do |month, expenses| %>
   <div class="table_placeholder<%= " current-month-placeholder" if month == current_month_name %>">
     <h4> <%= month %> </h4>
     <table class="table table-condensed table-hover expense-table">
