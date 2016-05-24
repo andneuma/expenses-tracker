@@ -12,7 +12,6 @@ class Notifier < ApplicationMailer
   end
 
   def expense_list_deleted(user, expense_list_name)
-    @expense_list = expense_list
     mail(to: user, subject: "[Expense list tracker] Ausgabenliste '#{expense_list_name}' wurde gelöscht")
   end
 end
