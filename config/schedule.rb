@@ -20,8 +20,11 @@
 # Learn more: http://github.com/javan/whenever
 
 set :environment, 'development'
-set :output, '/log/cron_log.log'
+every 5.minutes do
+  rake 'weekly_digest'
+end
 
-every 2.minutes do
+set :environment, 'production'
+every :sunday, at: '5pm' do
   rake 'weekly_digest'
 end
