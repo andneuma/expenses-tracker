@@ -1,11 +1,11 @@
-<div class="container-fluid">
+<div class='container-fluid'>
   <h2><%= @expense_list.name %></h2>
   <p>
-    <p class="text-muted"><%= @expense_list.description %></p>
+    <p class='text-muted'><%= @expense_list.description %></p>
   </p>
 </div>
 
-<div class="container-fluid">
+<div class='container-fluid'>
   <!--  YEAR -->
   <% expenses_by_year(@expense_list.expenses).each do |year, expenses| %>
   <h3><%= year %></h3>
@@ -13,14 +13,14 @@
   <% expenses_by_months(expenses).each do |month, expenses| %>
   <div class="table_placeholder<%= " current-month-placeholder" if given_month_is_current_month(month, year) %>">
     <h4> <%= month_name(month) %> </h4>
-    <table class="table table-condensed table-hover expense-table">
-      <thead class="month-row">
-        <th class="hidden-xs-up"></th>
-        <th class="col-md-1">Date</th>
-        <th class="col-md-1">Where</th>
-        <th class="col-md-1">Who</th>
-        <th class="col-md-1">How much</th>
-        <th class="col-md-1">Cash pool</th>
+    <table class='table table-condensed table-hover expense-table'>
+      <thead class='month-row'>
+        <th class='hidden-xs-up'></th>
+        <th class='col-md-1'>Date</th>
+        <th class='col-md-1'>Where</th>
+        <th class='col-md-1'>Who</th>
+        <th class='col-md-1'>How much</th>
+        <th class='col-md-1'>Cash pool</th>
       </thead>
       <tbody>
         <!--  EXPENSES IN RESPECTIVE MONTH-->
@@ -32,9 +32,9 @@
   <% end  %>
   <br>
   <p>
-    <%= link_to "Add expense", new_expense_list_expense_path(@expense_list), {class: "btn btn-success btn-xs"} %>
-    <%= link_to "Modify list", edit_expense_list_path(@expense_list), {class: "btn btn-warning btn-xs"} %>
-    <%= link_to "Delete list", expense_list_path(@expense_list), {method: "delete", data: { confirm: "Bist du dir sicher, dass du die Liste löschen willst?" }, class: 'btn btn-danger btn-xs'} %>
-    <%= link_to 'Back', expense_lists_path, {class: "btn btn-primary btn-xs"} %>
+    <%= link_to 'Add expense', new_expense_list_expense_path(@expense_list), {class: 'btn btn-success btn-xs'} %>
+    <%= link_to 'Modify list', edit_expense_list_path(@expense_list), {class: 'btn btn-warning btn-xs'} %>
+    <%= link_to 'Delete list', expense_list_path(@expense_list), {method: 'delete', data: { confirm: 'Bist du dir sicher, dass du die Liste löschen willst?' }, class: 'btn btn-danger btn-xs'} %>
+    <%= link_to 'Back', expense_lists_path, {class: 'btn btn-primary btn-xs'} %>
   </p>
 </div>

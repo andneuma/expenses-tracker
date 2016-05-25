@@ -1,52 +1,52 @@
-<div class="container">
+<div class='container'>
   <h4>User-Details bearbeiten</h4>
   <%= form_for @user do |f| %>
   <fieldset class="form-group row #{" has-error" if f.object.errors.include?(:name)}">
-    <div class="col-xs-3">
-      <%= f.text_field :name, {class: "form-control"} %>
+    <div class='col-xs-3'>
+      <%= f.text_field :name, {class: 'form-control'} %>
     </div>
-    <div class="col-xs-3">
-      <span class="help-block">
-        <%= f.object.errors[:name].join(", ") %>
+    <div class='col-xs-3'>
+      <span class='help-block'>
+        <%= f.object.errors[:name].join(', ') %>
       </span>
     </div>
   </fieldset>
 
   <fieldset class="form-group row #{" has-error" if f.object.errors.include?(:email)}">
-    <div class="col-xs-3">
-      <%= f.text_field :email, {class: "form-control"} %>
+    <div class='col-xs-3'>
+      <%= f.text_field :email, {class: 'form-control'} %>
     </div>
-    <div class="col-xs-3">
-      <span class="help-block">
-        <%= f.object.errors[:email].join(", ") %>
+    <div class='col-xs-3'>
+      <span class='help-block'>
+        <%= f.object.errors[:email].join(', ') %>
       </span>
     </div>
   </fieldset>
 
   <fieldset class="form-group row #{" has-error" if f.object.errors.include?(:password)}">
-    <div class="col-xs-3">
-      <%= f.password_field :password, {class: "form-control"} %>
+    <div class='col-xs-3'>
+      <%= f.password_field :password, {class: 'form-control'} %>
     </div>
-    <div class="col-xs-3">
-      <span class="help-block">
-        <%= f.object.errors[:password].join(", ") %>
+    <div class='col-xs-3'>
+      <span class='help-block'>
+        <%= f.object.errors[:password].join(', ') %>
       </span>
     </div>
   </fieldset>
 
   <fieldset class="form-group row #{" has-error" if f.object.errors.include?(:password_confirmation)}">
-    <div class="col-xs-3">
-      <%= f.password_field :password_confirmation, {class: "form-control"} %>
+    <div class='col-xs-3'>
+      <%= f.password_field :password_confirmation, {class: 'form-control'} %>
     </div>
-    <div class="col-xs-3">
-      <span class="help-block">
-        <%= f.object.errors[:password_confirmation].join(", ") %>
+    <div class='col-xs-3'>
+      <span class='help-block'>
+        <%= f.object.errors[:password_confirmation].join(', ') %>
       </span>
     </div>
   </fieldset>
 
-  <%= f.submit 'Abschicken', {class: "btn btn-primary btn-success"} %>
-  <%= link_to 'Abbrechen', root_path, {class: "btn btn-primary btn-danger"} %>
+  <%= f.submit 'Abschicken', {class: 'btn btn-primary btn-success'} %>
+  <%= link_to 'Abbrechen', root_path, {class: 'btn btn-primary btn-danger'} %>
   <% end %>
 
 </div>
