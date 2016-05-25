@@ -1,20 +1,25 @@
 ## Installation
 
-Some Dependencies you need:
+* clone the repository
 
-    clone the repository
+* get ruby version
 
-    get the common ruby version
-
-    get MySQL
+* get MySQL
 
 ## Setup
+
+#### Package requirements
+Install neccessary packages (gems) inside the project folder using
+```
+sudo gem install bundler
+
+bundle install
+```
 #### Basic Mailer scheduling
-Provide account information for mail accounts used for sending app emails in environment configuration files `/config/environments/*.rb`.
+Provide account information for mail accounts used for sending app emails in environment configuration files `/config/environments/*.rb`. Make sure that no secret keys, passwords, etc. are stored here. Use environment variables via `export <VARNAME>="<CONTENT>"` instead.
+If you want to use [figaro](https://github.com/laserlemon/figaro) initialize it via `figaro install` which creates `/config/application.yml` which you can modify to your needs.
 
-_Running the application in production mode should not make use of private email accounts, which is "okayish" running in development_
-
-The application makes use of `wheneverize` gem for scheduling cron job _digest emails_. 
+The application makes use of `wheneverize` gem for *scheduling* cron job _digest emails_.
 
 You can modify the default settings (weekly digest of expense lists on sunday evening) in `/config/schedule.rb`
 
@@ -24,15 +29,17 @@ Update your cron job list with
 
 `whenever` or `crontab -l`
 
-#### Configure Development
-Inside the project folder run:
+_If you're using RVM and your cronjobs won't get executed try_
 ```
-sudo gem install bundler
-
+rvm use <ruby_version>
 bundle install
-
-RAILS_ENV=development bundle exec rake db:create db:migrate
 ```
+
+#### Development
+Create and initialize database with
+
+`RAILS_ENV=development bundle exec rake db:create db:migrate`
+
 Start the App in `:development` environment using
 
 `rails s -e development`
