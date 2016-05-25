@@ -1,50 +1,50 @@
 <%= form_for @expense_list do |f| %>
   <fieldset class="form-group row #{"has-danger" if f.object.errors.include?(:name)}">
-    <div class="col-xs-3">
-      <%= f.text_field :name, {class: "form-control", placeholder: "e.g. Essenseinkäufe"} %>
+    <div class='col-xs-3'>
+      <%= f.text_field :name, {class: 'form-control', placeholder: 'e.g. Essenseinkäufe'} %>
     </div>
-    <div class="col-xs-3">
-      <span class="help-block">
-      <%= f.object.errors[:name].join(", ") %>
+    <div class='col-xs-3'>
+      <span class='help-block'>
+      <%= f.object.errors[:name].join(', ') %>
       </span>
     </div>
   </fieldset>
 
   <fieldset class="form-group row #{"has-danger" if f.object.errors.include?(:description)}">
-    <div class="col-xs-3">
-      <%= f.text_area :description, {class: "form-control", placeholder: "Liste für Wocheneinkaufs-Ausgaben "} %>
+    <div class='col-xs-3'>
+      <%= f.text_area :description, {class: 'form-control', placeholder: 'Liste für Wocheneinkaufs-Ausgaben '} %>
     </div>
-    <div class="col-xs-3">
-      <span class="help-block">
-      <%= f.object.errors[:description].join(", ") %>
+    <div class='col-xs-3'>
+      <span class='help-block'>
+      <%= f.object.errors[:description].join(', ') %>
       </span>
     </div>
   </fieldset>
 
   <fieldset class="form-group row #{"has-danger" if f.object.errors.include?(:budget_in_euro)}">
-    <div class="col-xs-3">
-      <%= f.text_field :budget_in_euro, {class: "form-control", placeholder: "optional"} %>
+    <div class='col-xs-3'>
+      <%= f.text_field :budget_in_euro, {class: 'form-control', placeholder: 'optional'} %>
     </div>
-    <div class="col-xs-3">
-      <span class="help-block">
-      <%= f.object.errors[:budget_in_euro].join(", ") %>
+    <div class='col-xs-3'>
+      <span class='help-block'>
+      <%= f.object.errors[:budget_in_euro].join(', ') %>
       </span>
     </div>
   </fieldset>
 
   <fieldset class="form-group row}">
-    <div class="col-xs-3">
+    <div class='col-xs-3'>
       <%= f.check_box :notifications_enabled %>
       <%= f.label 'Enable email notifications for list' %>
     </div>
   </fieldset>
 
-  <div class="row">
-    <div class="col-xs-2">
-      <%= f.submit "Submit", class: "btn btn-primary btn-success" %>
+  <div class='row'>
+    <div class='col-xs-2'>
+      <%= f.submit 'Submit', class: 'btn btn-primary btn-success' %>
     </div>
-    <div class="col-xs-1">
-      <%= link_to "Back", expense_lists_path, class: "btn btn-primary btn-danger" %>
+    <div class='col-xs-1'>
+      <%= link_to 'Back', expense_lists_path, class: 'btn btn-primary btn-danger' %>
     </div>
   </div>
 <% end  %>
