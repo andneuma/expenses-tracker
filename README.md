@@ -16,7 +16,7 @@ sudo gem install bundler
 bundle install
 ```
 #### Basic Mailer scheduling
-Provide account information for mail accounts used for sending app emails in environment configuration files `/config/environments/*.rb`. Make sure that no secret keys, passwords, etc. are stored here. Use environment variables via `export <VARNAME>="<CONTENT>"` instead.
+Provide account information for mail accounts used for sending app emails in environment configuration files `/config/environments/*.rb` or in `/config/application.rb` if settings independent from environment. Make sure that no secret keys, passwords, etc. are stored. Use environment variables via `export <VARNAME>="<CONTENT>"` instead.
 If you want to use [figaro](https://github.com/laserlemon/figaro) initialize it via `figaro install` which creates `/config/application.yml` which you can modify to your needs.
 
 The application makes use of `wheneverize` gem for *scheduling* cron job _digest emails_.

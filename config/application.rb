@@ -22,5 +22,17 @@ module ExpensesTracker
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Don't care if the mailer can't send.
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address:              ENV['EMAIL_DOMAIN'],
+      port:                 587,
+      domain:               'expenses_tracker',
+      user_name:            ENV['EMAIL_USER'],
+      password:             ENV['EMAIL_PASSWD'],
+      authentication:       'plain',
+      enable_starttls_auto: true }
+    end
   end
-end
