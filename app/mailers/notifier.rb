@@ -1,4 +1,7 @@
 class Notifier < ApplicationMailer
+  helper :application
+  helper :expense_lists
+
   def expense_list_attribute_changes(user, expense_list_after_update, expense_list_before_update)
     @expense_list = expense_list_after_update
     @old_expense_list = expense_list_before_update
@@ -14,7 +17,7 @@ class Notifier < ApplicationMailer
     mail(to: user, subject: "[Expense list tracker] Ausgabenliste '#{expense_list_name}' wurde gelöscht")
   end
 
-  def weekly_digest(user, expense_list)
+  def weekly_digest(user)
     mail(to: user, subject: "[Expense list tracker] Weekly digest")
   end
 end

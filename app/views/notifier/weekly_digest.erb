@@ -1,1 +1,7 @@
-weekly digest test
+<h2>Weekly digest</h4>
+  <% expense_lists_with_notifications_enabled.each do |expense_list| %>
+    <h4><%= expense_list.name %></h4>
+    <p>Expenses in <%= current_month_name.downcase %> so far: <i><%= sum_of_exp_in_month(expense_list, current_month, current_year) %>€</i></p>
+    <p>Money left in <%= current_month_name.downcase %>: <i><%= euros_left_in_month(expense_list, current_month, current_year) %>€</i></p>
+    <p><i>Forgot to submit any expenses this week? <%= link_to 'Click here', new_expense_list_expense_url(expense_list) %> to add what you've spent!</i></p>
+  <% end %>

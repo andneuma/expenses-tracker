@@ -9,10 +9,15 @@ module ExpenseListsHelper
     expenses.group_by { |e| e[:when].month }.sort.map { |month, expense| [month, expense] }
   end
 
-  def sum_of_exp_in_month(expense_list, month, year)
+  def expenses_in_month(expense_list, month, year)
     expenses = expense_list.expenses.select do |e|
       e.when.strftime('%m').to_i == month.to_i && e.when.strftime('%Y').to_i == year.to_i
     end
+    expenses
+  end
+
+  def sum_of_exp_in_month(expense_list, month, year)
+    expenses = expenses_in_month(expense_list, month, year)
     expenses.map(&:expenses_in_euro).reduce(&:+).to_i || 0
   end
 

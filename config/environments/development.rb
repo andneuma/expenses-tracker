@@ -43,8 +43,10 @@ Rails.application.configure do
     address:              'smtp.gmail.com',
     port:                 587,
     domain:               'example.com',
-    user_name:            ENV["GMAIL_USER"],
-    password:             ENV["GMAIL_PASSWD"],
+    user_name:            ENV['GMAIL_USER'],
+    password:             ENV['GMAIL_PASSWD'],
     authentication:       'plain',
     enable_starttls_auto: true }
+
+    config.action_mailer.default_url_options = { host: 'localhost:3000' }
 end
