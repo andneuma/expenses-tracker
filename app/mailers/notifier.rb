@@ -10,7 +10,7 @@ class Notifier < ApplicationMailer
 
   def new_expense_list_created(user, expense_list)
     @expense_list = expense_list
-    mail(to: user, subject: "[Expense list tracker] Eine neue Ausgabenliste wurde angelegt!")
+    mail(to: user, subject: '[Expense list tracker] Eine neue Ausgabenliste wurde angelegt!')
   end
 
   def expense_list_deleted(user, expense_list_name)
@@ -18,6 +18,6 @@ class Notifier < ApplicationMailer
   end
 
   def weekly_digest(user)
-    mail(to: user, subject: "[Expense list tracker] Weekly digest")
+    mail(to: user, subject: '[Expense list tracker] Weekly digest')
   end
 end
