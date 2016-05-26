@@ -30,6 +30,7 @@ module ApplicationHelper
     User.all.map(&:id)
   end
 
+  # DATE HELPERS
   def month_name(month)
     Date::MONTHNAMES[month]
   end
@@ -44,5 +45,9 @@ module ApplicationHelper
 
   def current_year
     Date.today.strftime('%Y')
+  end
+
+  def given_month_is_current_month(month, year)
+    month.to_i == current_month.to_i && year.to_i == current_year.to_i
   end
 end

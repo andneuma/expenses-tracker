@@ -23,7 +23,7 @@
 
   <fieldset class="form-group row #{"has-danger" if f.object.errors.include?(:budget_in_euro)}">
     <div class='col-xs-3'>
-      <%= f.text_field :budget_in_euro, {class: 'form-control', placeholder: 'optional'} %>
+      <%= f.text_field :budget_in_euro, {class: 'form-control', placeholder: 'Monthly budget (optional)'} %>
     </div>
     <div class='col-xs-3'>
       <span class='help-block'>
@@ -33,10 +33,13 @@
   </fieldset>
 
   <fieldset class="form-group row}">
-    <div class='col-xs-3'>
       <%= f.check_box :notifications_enabled %>
-      <%= f.label 'Enable email notifications for list' %>
-    </div>
+      Enable email notifications for list
+  </fieldset>
+
+  <fieldset class="form-group row}">
+      <%= f.number_field :notifications_enabled, in: 1.0..99.0 %>
+      <%= link_to 'Threshold', '#'%> for alert messages
   </fieldset>
 
   <div class='row'>

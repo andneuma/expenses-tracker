@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160524204607) do
+ActiveRecord::Schema.define(version: 20160526123057) do
 
   create_table "expense_lists", force: :cascade do |t|
     t.string   "name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20160524204607) do
     t.datetime "updated_at",                                 null: false
     t.text     "members",               default: "--- []\n"
     t.boolean  "notifications_enabled", default: true
+    t.decimal  "crit_threshold",        default: 0.15
   end
 
   create_table "expenses", force: :cascade do |t|

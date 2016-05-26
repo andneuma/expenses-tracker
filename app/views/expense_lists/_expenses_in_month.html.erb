@@ -16,13 +16,13 @@
 <% end %>
 <tr>
   <td class='monthly-totals-row' colspan=4></td>
-  <td class='monthly-totals-row'><%= sum_of_exp_in_month(expense_list, month, year) %>€
+  <td class='monthly-totals-row'><%= expense_list.sum_of_exp_in_month(month, year) %>€
     <td class='monthly-totals-row' colspan='1'></td>
   </tr>
   <% if expense_list.budget_in_euro %>
   <tr>
     <td class='monthly-totals-row' colspan=4></td>
-    <td class='monthly-totals-row euros_left_in_month'><b><%= expense_list.budget_in_euro - sum_of_exp_in_month(expense_list, month, year) %>€</b> left in month</td>
+    <td class='monthly-totals-row euros_left_in_month'><b><%= expense_list.budget_in_euro - expense_list.sum_of_exp_in_month(month, year) %>€</b> left in month</td>
     <td class='monthly-totals-row' colspan='1'></td>
   </tr>
   <% end %>
