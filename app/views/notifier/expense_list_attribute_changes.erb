@@ -1,9 +1,13 @@
-Hallo,
-
-die Ausgabenliste '<%= @old_expense_list.name %>' wurde geändert:
+<h2>Expense Tracker notification - list attributes changed in <%= @expense_list.name %></h2>
 
 <ul>
   <li>Name: <%= @expense_list.name %></li>
   <li>Budget: <%= @expense_list.budget_in_euro %>€</li>
-  <li>Beschreibung: <%= @expense_list.description %></li>
+  <li>Description: <%= @expense_list.description %></li>
+  <li>Threshold: <%= @expense_list.crit_threshold %></li>
 </ul>
+
+<%= link_to 'Click here', edit_expense_list_url(@expense_list) %> in case these settings are not correct
+
+Greetings,
+your expense tracker

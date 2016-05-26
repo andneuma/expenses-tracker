@@ -1,9 +1,15 @@
-Hallo,
+<h2>Expense Tracker notification - Expense list <%= @expense_list.name %> has been created!</h2>
 
-eine neue Ausgabenliste wurde angelegt:
+A new expense list has been created:
 
 <ul>
   <li>Name: <%= @expense_list.name %></li>
   <li>Budget: <%= @expense_list.budget_in_euro %>€</li>
-  <li>Beschreibung: <%= @expense_list.description %></li>
+  <li>Description: <%= @expense_list.description %></li>
+  <li>Threshold: <%= @expense_list.crit_threshold %></li>
 </ul>
+
+<%= link_to 'Click here', expense_list_url(@expense_list) %> to see what has been added to it so far.
+
+Greetings,
+your expense tracker
