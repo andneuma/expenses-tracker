@@ -1,7 +1,7 @@
 <%= form_for @expense_list do |f| %>
   <fieldset class="form-group row #{"has-danger" if f.object.errors.include?(:name)}">
     <div class='col-xs-3'>
-      <%= f.text_field :name, {class: 'form-control', placeholder: 'e.g. Essenseinkäufe'} %>
+      <%= f.text_field :name, {class: 'form-control', placeholder: 'List name'} %>
     </div>
     <div class='col-xs-3'>
       <span class='help-block'>
@@ -12,7 +12,7 @@
 
   <fieldset class="form-group row #{"has-danger" if f.object.errors.include?(:description)}">
     <div class='col-xs-3'>
-      <%= f.text_area :description, {class: 'form-control', placeholder: 'Liste für Wocheneinkaufs-Ausgaben '} %>
+      <%= f.text_area :description, {class: 'form-control', placeholder: 'This is a list for...'} %>
     </div>
     <div class='col-xs-3'>
       <span class='help-block'>
@@ -23,7 +23,7 @@
 
   <fieldset class="form-group row #{"has-danger" if f.object.errors.include?(:budget_in_euro)}">
     <div class='col-xs-3'>
-      <%= f.text_field :budget_in_euro, {class: 'form-control', placeholder: 'Monthly budget (optional)'} %>
+      <%= f.text_field :budget_in_euro, {class: 'form-control', placeholder: 'Monthly budget in € (optional)'} %>
     </div>
     <div class='col-xs-3'>
       <span class='help-block'>
