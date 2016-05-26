@@ -19,7 +19,6 @@ class ExpenseListsController < ApplicationController
     @expense_list = ExpenseList.new(expense_list_params)
     if @expense_list.save
       flash[:success] = "Neue Ausgabenliste angelegt: #{@expense_list.name}"
-      Notifier.new_expense_list_created(User.find(session[:user_id]).email, @expense_list).deliver_now
       render :show
     else
       @errors = @expense_list.errors
@@ -48,12 +47,8 @@ class ExpenseListsController < ApplicationController
   def destroy
     @expense_list = ExpenseList.find(params[:id])
     @expense_list_name = @expense_list.name
-    user_email = User.find(session[:user_id]).email
-
     @expense_list.destroy
-
-    Notifier.expense_list_deleted(user_email, @expense_list_name).deliver_now
-    flash[:success] = "Liste wurde erfolgreich gelöscht"
+    flash[:success] = 'List deleted'
 
     redirect_to expense_lists_path
   end
