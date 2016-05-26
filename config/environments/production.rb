@@ -79,5 +79,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Don't care if the mailer can't send.
-  config.action_mailer.default_url_options = { host: ENV['ROR_PROD_HOSTNAME'] }
+  config.action_mailer.default_url_options = { host: '10.42.2.203' }
 end
