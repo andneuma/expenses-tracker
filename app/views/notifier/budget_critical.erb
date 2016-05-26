@@ -1,9 +1,11 @@
-<h2>Expense Tracker notification - Critical expense level in <%= @expense_list.name %></h2>
+<h3>Expense Tracker notification - Critical expense level in <%= @expense_list.name %></h3>
 <p>
   <i>The budget in this list reached a critical level. You might want to check whether anything strange happened or not! <%= link_to 'Click here', expense_list_url(@expense_list) %> to see what you've spent so far this month!</i>
 </p>
 <p>Expenses in <%= current_month_name.downcase %> so far: <i><%= @expense_list.sum_of_exp_in_month(current_month, current_year) %>€</i></p>
 <p>Money left in <%= current_month_name.downcase %>: <i><%= @expense_list.euros_left_in_month(current_month, current_year) %>€</i></p>
 
-Greetings,
-your expense tracker
+<p>
+  Greetings,
+  your expense tracker
+</p>
