@@ -29,7 +29,7 @@ module ExpensesTracker
     config.action_mailer.smtp_settings = {
       address:              ENV['EMAIL_DOMAIN'],
       port:                 587,
-      domain:               'expenses_tracker',
+      domain:               ENV['EMAIL_DOMAIN'],
       user_name:            ENV['EMAIL_USER'],
       password:             ENV['EMAIL_PASSWD'],
       authentication:       'plain',
