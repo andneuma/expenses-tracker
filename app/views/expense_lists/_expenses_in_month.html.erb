@@ -5,7 +5,7 @@
     <%= link_to '', edit_expense_list_expense_path(@expense_list, expense), {class: 'btn btn-default btn-xs glyphicon glyphicon-pencil glyph-button'} %>
     <%= link_to '', expense_list_expense_path(@expense_list, expense), {method: 'delete', data: { confirm: 'Bist du dir sicher, dass du den Eintrag löschen willst?' }, class: 'btn btn-default btn-xs glyphicon glyphicon-trash glyph-button'} %>
     <%= link_to '', '#', {'data-toggle' => 'modal','data-target' => "#modal-#{expense.id}", class: 'btn btn-default btn-xs glyphicon glyphicon-search glyph-button'} %>
-    <%= render partial: 'shared/modal', locals: {expense: expense} %>
+    <%= render partial: 'shared/modals/expense_comment_modal', locals: {expense: expense} %>
   </td>
   <td><%= expense.when.strftime("%d.%m") %></td>
   <td><%= expense.where %></td>

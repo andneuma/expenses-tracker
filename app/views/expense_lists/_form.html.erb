@@ -39,7 +39,12 @@
 
   <fieldset class="form-group row}">
       <%= f.number_field :notifications_enabled, in: 1.0..99.0 %>
-      <%= link_to 'Threshold', '#'%> for alert messages
+      <%= link_to 'Threshold', '#', {'data-toggle' => 'modal', 'data-target' => "#thresh_info"}%> for alert messages
+      <%= render partial: 'shared/modals/common_modal', locals: { modal_id: 'thresh_info',
+                                                                  modal_title: "Whats a 'Threshold'?",
+                                                                  modal_body: 'Set this if you want to get notified, if the amount of money you
+                                                                  have available is LOWER then x % of the budget. Example: Automatically send a
+                                                                  notification if you have less than 15% available this month. Requires a budget.'} %>
   </fieldset>
 
   <div class='row'>
