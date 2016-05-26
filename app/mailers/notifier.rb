@@ -13,8 +13,9 @@ class Notifier < ApplicationMailer
     mail(to: user, subject: '[Expense list tracker] Eine neue Ausgabenliste wurde angelegt!')
   end
 
-  def expense_list_deleted(user, expense_list_name)
-    mail(to: user, subject: "[Expense list tracker] Ausgabenliste '#{expense_list_name}' wurde gelöscht")
+  def expense_list_deleted(user, expense_list)
+    @expense_list = expense_list
+    mail(to: user, subject: "[Expense list tracker] Ausgabenliste '#{expense_list.name}' wurde gelöscht")
   end
 
   def budget_critical(user, expense_list)

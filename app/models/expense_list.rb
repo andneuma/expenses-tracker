@@ -21,7 +21,7 @@ class ExpenseList < ActiveRecord::Base
 
   def notify_about_list_removal
     User.all.each do |user|
-      Notifier.expense_list_deleted(user.email, name).deliver_now
+      Notifier.expense_list_deleted(user.email, self).deliver_now
     end
   end
 
