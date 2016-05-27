@@ -19,11 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-set :environment, 'development'
-every 5.minutes do
-  rake 'weekly_digest'
-end
-
 set :environment, 'production'
 every :sunday, at: '5pm' do
   rake 'weekly_digest'

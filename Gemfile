@@ -15,6 +15,7 @@ gem 'jc-validates_timeliness'
 gem 'figaro', '~> 1.1.1'
 gem 'bcrypt', '~> 3.1.11'
 gem 'whenever', '~> 0.9.4'
+gem 'thin'
 
 group :development, :test do
   gem 'byebug', '~> 8.2.4'
