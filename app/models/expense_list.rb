@@ -4,15 +4,8 @@ class ExpenseList < ActiveRecord::Base
 
   before_destroy :notify_about_list_removal
   after_save :notify_about_list_creation
-  after_update :notify_about_list_changes
 
   # MAILER CALLBACK FUNCTIONS
-  def notify_about_list_changes
-    User.all.each do |user|
-      Notifier.expense_list_attribute_changes(user.email, self).deliver_now
-    end
-  end
-
   def notify_about_list_creation
     User.all.each do |user|
       Notifier.new_expense_list_created(user.email, self).deliver_now
