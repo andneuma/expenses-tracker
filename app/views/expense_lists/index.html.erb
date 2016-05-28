@@ -14,7 +14,10 @@
           <% end %>
           <div class='panel-body'>
             <p class='text-muted'>
-              <%= expense_list.description %>
+              <%= raw !expense_list.description.empty? && expense_list.description || "<i> No description supplied, add one #{link_to 'here', edit_expense_list_path(expense_list)} </i>" %>
+            </p>
+            <p class="text-muted">
+              <small>(Email notifications enabled)</small>
             </p>
           </div>
           <div class='panel-footer'>
