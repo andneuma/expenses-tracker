@@ -1,4 +1,71 @@
 <div class='container'>
   <h4>Add expense</h4>
-  <%= render 'form' %>
+  <%= form_for([@expense_list, @expense]) do |f| %>
+  <fieldset class="form-group row #{"has-error" if f.object.errors.include?(:where)}">
+    <div class='col-xs-3'>
+      <%= f.text_field :where, {class: 'form-control', placeholder: 'Shopping location'} %>
+    </div>
+    <div class='col-xs-3'>
+      <span class='help-block'>
+        <%= f.object.errors[:where].join(', ') %>
+      </span>
+    </div>
+  </fieldset>
+
+  <fieldset class="form-group row #{"has-error" if f.object.errors.include?(:expenses_in_euro)}">
+    <div class='col-xs-3'>
+      <%= f.text_field :expenses_in_euro, {class: 'form-control', placeholder: 'Money spent, e.g. 23.45'} %>
+    </div>
+    <div class='col-xs-3'>
+      <span class='help-block'>
+        <%= f.object.errors[:expenses_in_euro].join(', ') %>
+      </span>
+    </div>
+  </fieldset>
+
+  <fieldset class="form-group row #{"has-error" if f.object.errors.include?(:when)}">
+    <div class='col-xs-3'>
+      <%= f.text_field :when, {class: 'form-control', placeholder: '23.04.2016', value: Date.today } %>
+    </div>
+    <div class='col-xs-3'>
+      <span class='help-block'>
+        <%= f.object.errors[:when].join(', ') %>
+      </span>
+    </div>
+  </fieldset>
+
+  <fieldset class="form-group row #{"has-error" if f.object.errors.include?(:comment)}">
+    <div class='col-xs-3'>
+      <%= f.text_field :comment, {class: 'form-control', placeholder: "Comment, e.g. 'Bought lot's of coffee..."} %>
+    </div>
+    <div class='col-xs-3'>
+      <span class='help-block'>
+        <%= f.object.errors[:comment].join(', ') %>
+      </span>
+    </div>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <div class='col-xs-3'>
+      <%= f.label 'Who went shopping:' %>
+      <%= f.collection_select :user_id, User.all, :id, :name %>
+    </div>
+  </fieldset>
+
+  <fieldset class='form-group'>
+    <div class='col-xs-3'>
+      <%= f.label '...from which account:' %>
+      <%= f.collection_select :cash_desk, Expense::CASH_DESK, :to_s, :humanize %>
+    </div>
+  </fieldset>
+
+  <div class='row'>
+    <div class='col-xs-2'>
+      <%= f.submit 'Submit', class: 'btn btn-primary btn-success' %>
+    </div>
+    <div class='col-xs-1'>
+      <%= link_to 'Back', expense_lists_path, class: 'btn btn-primary btn-danger' %>
+    </div>
+  </div>
+  <% end %>
 </div>
