@@ -5,6 +5,19 @@ class ExpenseList < ActiveRecord::Base
   before_destroy :notify_about_list_removal
   after_save :notify_about_list_creation
 
+  # EXPORT TO CSV
+  def to_csv
+    attributes = %w{where when expenses_in_euro cash_desk }
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      expenses.all.each do |expense|
+        csv << attributes.map { |attr| expense.send(attr) }
+      end
+    end
+  end
+
   # MAILER CALLBACK FUNCTIONS
   def notify_about_list_creation
     User.all.each do |user|

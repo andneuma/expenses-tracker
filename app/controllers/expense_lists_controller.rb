@@ -13,6 +13,12 @@ class ExpenseListsController < ApplicationController
   def show
     @expense_list = ExpenseList.find(params[:id])
     @expenses = @expense_list.expenses
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @expense_list.to_csv,
+        filename: "#{@expense_list.name} (#{@expense_list.created_at.strftime("%d.%m.%Y")} - #{Date.today.strftime("%d.%m.%Y")}).csv" }
+    end
   end
 
   def create
