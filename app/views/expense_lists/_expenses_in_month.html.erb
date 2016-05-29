@@ -1,5 +1,5 @@
 <!-- CREATE EXPENSE TABLE ROWS -->
-<% expenses.each do |expense| %>
+<% expenses.sort_by { |e| e.when }.each do |expense| %>
 <tr>
   <td class='col-md-1'>
     <%= link_to '', edit_expense_list_expense_path(@expense_list, expense), {class: 'btn btn-default btn-xs glyphicon glyphicon-pencil glyph-button'} %>

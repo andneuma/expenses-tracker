@@ -8,15 +8,26 @@
   </p>
 </div>
 
+<br>
+
+<div class="container-fluid">
+    <%= link_to 'Add expense', new_expense_list_expense_path(@expense_list), {class: 'btn btn-success btn-xs'} %>
+    <%= link_to 'Modify list', edit_expense_list_path(@expense_list), {class: 'btn btn-warning btn-xs'} %>
+    <%= link_to 'Delete list', expense_list_path(@expense_list), {method: 'delete', data: { confirm: 'Bist du dir sicher, dass du die Liste löschen willst?' }, class: 'btn btn-danger btn-xs'} %>
+    <%= link_to 'Back', expense_lists_path, {class: 'btn btn-primary btn-xs'} %>
+</div>
+
+<br>
+
 <div class='container-fluid'>
   <!--  YEAR -->
-  <% expenses_by_year(@expense_list.expenses).each do |year, expenses| %>
+  <% expenses_by_year(@expense_list.expenses).reverse.each do |year, expenses| %>
   <h3><%= year %></h3>
   <!--  MONTH TABLE LAYOUT-->
-  <% expenses_by_months(expenses).each do |month, expenses| %>
+  <% expenses_by_months(expenses).reverse.each do |month, expenses| %>
   <div class="table_placeholder<%= " current-month-placeholder" if given_month_is_current_month(month, year) %>">
     <h4> <%= month_name(month) %> </h4>
-    <table class='table table-condensed table-hover expense-table'>
+    <table class='table table table-striped table-bordered table-condensed expense-table' cellspacing="0">
       <thead class='month-row'>
         <th class='hidden-xs-up'></th>
         <th class='col-md-1'>Date</th>
@@ -33,11 +44,4 @@
   </div>
   <% end %>
   <% end  %>
-  <br>
-  <p>
-    <%= link_to 'Add expense', new_expense_list_expense_path(@expense_list), {class: 'btn btn-success btn-xs'} %>
-    <%= link_to 'Modify list', edit_expense_list_path(@expense_list), {class: 'btn btn-warning btn-xs'} %>
-    <%= link_to 'Delete list', expense_list_path(@expense_list), {method: 'delete', data: { confirm: 'Bist du dir sicher, dass du die Liste löschen willst?' }, class: 'btn btn-danger btn-xs'} %>
-    <%= link_to 'Back', expense_lists_path, {class: 'btn btn-primary btn-xs'} %>
-  </p>
 </div>
