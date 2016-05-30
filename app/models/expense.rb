@@ -7,7 +7,7 @@ class Expense < ActiveRecord::Base
   validates :where, presence: true, length: {minimum: 2, maximum: 75}
   validates_date :when, on_or_before: -> { Date.current }
   validates_presence_of :expenses_in_euro
-  validates_numericality_of :expenses_in_euro, greater_than: 0
+  validates_numericality_of :expenses_in_euro
 
   validates :when, presence: true
 

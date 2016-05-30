@@ -35,9 +35,4 @@ class ExpenseTest < ActiveSupport::TestCase
     expense_missing_expenses_in_euro = Expense.new(where: "Lidl", comment: "", when: Time.now, expenses_in_euro: nil)
     assert_not expense_missing_expenses_in_euro.valid?
   end
-
-  test "negative expenses value should be invalid" do
-    negative_expenses_in_euro = Expense.new(where: "Lidl", comment: "", when: Time.now, expenses_in_euro: -23.5)
-    assert_not negative_expenses_in_euro.valid?
-  end
 end
