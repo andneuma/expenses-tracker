@@ -50,4 +50,8 @@ module ApplicationHelper
   def given_month_is_current_month(month, year)
     month.to_i == current_month.to_i && year.to_i == current_year.to_i
   end
+
+  def simple_date(date)
+    date.strftime("%d.%m.%Y")
+  end
 end

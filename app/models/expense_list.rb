@@ -50,4 +50,8 @@ class ExpenseList < ActiveRecord::Base
     total = expenses.map(&:expenses_in_euro).reduce(&:+)
     total.nil? && 0 || total
   end
+
+  def expenses_in_list_by_user
+    expenses.group_by(&:user_id)
+  end
 end
