@@ -45,4 +45,9 @@ class ExpenseList < ActiveRecord::Base
   def euros_left_in_month(month, year)
     budget_in_euro - sum_of_exp_in_month(month, year) if budget_in_euro
   end
+
+  def total_expenses_in_list
+    total = expenses.map(&:expenses_in_euro).reduce(&:+)
+    total.nil? && 0 || total
+  end
 end

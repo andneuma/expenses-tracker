@@ -1,8 +1,7 @@
 <div class='container-fluid'>
   <h2><%= @expense_list.name %></h2>
-  <p>
-    <p class='text-muted'><%= @expense_list.description %></p>
-  </p>
+  <p class='text-muted'><%= @expense_list.description %></p>
+  <p class='text-muted'><i>Total expenses in list: <%= @expense_list.total_expenses_in_list %></i></p>
   <p class='text-muted small'>
     <%= link_to 'Download as CSV', expense_list_path(@expense_list, format: "csv") %>
   </p>
