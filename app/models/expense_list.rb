@@ -2,8 +2,8 @@ class ExpenseList < ActiveRecord::Base
   has_many :expenses
   validates :name, presence: true, length: { minimum: 3, maximum: 50 }
 
-  before_destroy :notify_about_list_removal
-  after_save :notify_about_list_creation
+  before_destroy :notify_about_list_removal if Rails.env == 'production'
+  after_save :notify_about_list_creation if Rails.env == 'production'
 
   # EXPORT TO CSV
   def to_csv

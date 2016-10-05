@@ -11,7 +11,7 @@ class Expense < ActiveRecord::Base
 
   validates :expense_date, presence: true
 
-  after_save :alert_on_critical_budget
+  after_save :alert_on_critical_budget if Rails.env == 'production'
 
   # Virtual attributes
   def month
