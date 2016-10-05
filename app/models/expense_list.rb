@@ -34,7 +34,7 @@ class ExpenseList < ActiveRecord::Base
   # VIRTUAL ATTRIBUTES
   def expenses_in_month(month, year)
     expenses.select do |e|
-      e.when.strftime('%m').to_i == month.to_i && e.when.strftime('%Y').to_i == year.to_i
+      e.month == month.to_i && e.year == year.to_i
     end
   end
 

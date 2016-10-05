@@ -23,13 +23,13 @@
     </div>
   </fieldset>
 
-  <fieldset class="form-group row #{"has-error" if f.object.errors.include?(:when)}">
+  <fieldset class="form-group row #{"has-error" if f.object.errors.include?(:expense_date)}">
     <div class='col-xs-3'>
-      <%= f.text_field :when, {class: 'form-control', placeholder: '23.04.2016', value: Date.today } %>
+      <%= f.text_field :expense_date, {class: 'form-control', placeholder: '23.04.2016', value: Date.today } %>
     </div>
     <div class='col-xs-3'>
       <span class='help-block'>
-        <%= f.object.errors[:when].join(', ') %>
+        <%= f.object.errors[:expense_date].join(', ') %>
       </span>
     </div>
   </fieldset>
