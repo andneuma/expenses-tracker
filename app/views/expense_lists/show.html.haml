@@ -1,0 +1,35 @@
+.container-fluid
+  %h2= @expense_list.name
+  %p.text-muted= @expense_list.description
+  %p.text-muted
+    %i
+      Total expenses in list: #{@expense_list.total_expenses_in_list}
+  %p.text-muted.small
+    = link_to 'Download as CSV', expense_list_path(@expense_list, format: "csv")
+    |
+    = link_to 'Show user stats', '#', { 'data-toggle' => 'modal', 'data-target' => "#user_stats_modal" }
+    = render partial: 'shared/modals/user_stats_modal', locals: {expense_list: @expense_list}
+
+.container-fluid
+  = link_to 'Add expense', new_expense_list_expense_path(@expense_list), {class: 'btn btn-success btn-xs'}
+  = link_to 'Modify list', edit_expense_list_path(@expense_list), {class: 'btn btn-warning btn-xs'}
+  = link_to 'Delete list', expense_list_path(@expense_list), {method: 'delete', data: { confirm: 'Bist du dir sicher, dass du die Liste willst?' }, class: 'btn btn-danger btn-xs'}
+  = link_to 'Back', expense_lists_path, {class: 'btn btn-primary btn-xs'}
+
+.container-fluid
+  - expenses_by_year(@expense_list.expenses).reverse.each do |year, expenses|
+    %h3= year
+    - expenses_by_months(expenses).reverse.each do |month, expenses|
+      .table_placeholder
+      %h4= month_name(month)
+      %table{class: 'table table table-striped table-bordered table-condensed expense-table', cellspacing: "0"}
+        %thead{class: 'month-row'}
+          %th{class: 'hidden-xs-up'}
+          %th{class: 'col-md-1'} Date
+          %th{class: 'col-md-1'} Where
+          %th{class: 'col-md-1'} Who
+          %th{class: 'col-md-1'} How much
+          %th{class: 'col-md-1'} Cash pool
+        %tbody
+          = render 'expenses_in_month', locals: {expenses: expenses, expense_list: @expense_list, month: month, year: year}
+          = render 'total_expenses_in_month', locals: {expenses: expenses, expense_list: @expense_list, month: month, year: year}

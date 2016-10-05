@@ -1,0 +1,8 @@
+.container-fluid
+  .panel-group{id: 'expense-list-panel-group'}
+    - if @expense_lists.any?
+      = render @expense_lists
+    - else
+      %p There is no expense list yet...
+  .row
+    = link_to "Create new expense list", new_expense_list_path, { class: 'btn btn-default btn-primary btn-success' }
