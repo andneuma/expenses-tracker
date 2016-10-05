@@ -1,0 +1,20 @@
+.col-xs-12.col-lg-3.col-md-4
+  .panel.panel-default
+    .panel-heading
+      = link_to expense_list.name, expense_list_path(expense_list)
+    .panel-body
+      .description
+      %p
+      - if expense_list.description.present?
+        = expense_list.description
+      - else
+        %i
+          No description supplied, add one
+          =link_to 'here', edit_expense_list_path(expense_list)
+      .email-notification.text-muted
+        (Email notifications enabled)
+    .panel-footer
+      = "Expenses in #{current_month_name}:"
+      %b
+        = expense_list.sum_of_exp_in_month(current_month, current_year).to_s + '€'
+      = "(#{expense_list.euros_left_in_month(current_month, current_year)}€ left)" if expense_list.budget_in_euro
