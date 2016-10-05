@@ -1,0 +1,25 @@
+<div class="row">
+  <!-- DEFINE SHAPE OF ONE PANEL -->
+  <div class='col-xs-12 col-lg-3 col-md-4'>
+    <div class='panel panel-default'>
+      <%= link_to expense_list_path(expense_list) do %>
+      <div class='panel-heading'>
+        <%= expense_list.name %>
+      </div>
+      <% end %>
+      <div class='panel-body'>
+        <p class='text-muted'>
+          <%= raw !expense_list.description.empty? && expense_list.description || "<i> No description supplied, add one #{link_to 'here', edit_expense_list_path(expense_list)} </i>" %>
+        </p>
+        <p class="text-muted">
+          <small>(Email notifications enabled)</small>
+        </p>
+      </div>
+      <div class='panel-footer'>
+        Expenses in <%= "#{current_month_name}" %>:
+        <b><%= "#{expense_list.sum_of_exp_in_month(current_month, current_year)}€" %></b>
+        <%= "(#{expense_list.euros_left_in_month(current_month, current_year)}€ left)" if expense_list.budget_in_euro %>
+      </div>
+    </div>
+  </div>
+</div>
