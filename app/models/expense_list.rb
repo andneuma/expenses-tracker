@@ -54,4 +54,16 @@ class ExpenseList < ActiveRecord::Base
   def expenses_in_list_by_user
     expenses.group_by(&:user_id)
   end
+
+  def expenses_in_list_by_year
+    expenses.group_by(&:year)
+  end
+
+  def expenses_in_list_by_year_month
+    monthly_expenses = {}
+    expenses_in_list_by_year.each do |year, expenses|
+      monthly_expenses[year] = expenses.group_by(&:month)
+    end
+    monthly_expenses
+  end
 end

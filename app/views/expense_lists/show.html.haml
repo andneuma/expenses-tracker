@@ -17,9 +17,9 @@
   = link_to 'Back', expense_lists_path, {class: 'btn btn-primary btn-xs'}
 
 .container-fluid
-  - expenses_by_year(@expense_list.expenses).reverse.each do |year, expenses|
+  - @expenses.each do |year, month|
     %h3= year
-    - expenses_by_months(expenses).reverse.each do |month, expenses|
+    - month.each do |month, expenses|
       .table_placeholder
       %h4= month_name(month)
       %table{class: 'table table table-striped table-bordered table-condensed expense-table', cellspacing: "0"}
@@ -31,5 +31,4 @@
           %th{class: 'col-md-1'} How much
           %th{class: 'col-md-1'} Cash pool
         %tbody
-          = render 'expenses_in_month', locals: {expenses: expenses, expense_list: @expense_list, month: month, year: year}
-          = render 'total_expenses_in_month', locals: {expenses: expenses, expense_list: @expense_list, month: month, year: year}
+          = render partial: 'expenses_in_list', locals: { expenses: expenses.sort_by(&:expense_date), expense_list: @expense_list, month: month, year: year }

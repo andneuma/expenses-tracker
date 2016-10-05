@@ -12,7 +12,7 @@ class ExpenseListsController < ApplicationController
 
   def show
     @expense_list = ExpenseList.find(params[:id])
-    @expenses = @expense_list.expenses
+    @expenses = @expense_list.expenses_in_list_by_year_month
 
     respond_to do |format|
       format.html
