@@ -1,0 +1,35 @@
+= form_for @expense_list do |f|
+  %fieldset{class: "form-group row #{"has-danger" if f.object.errors.include?(:name)}"}
+    .col-xs-3
+      = f.text_field :name, {class: 'form-control', placeholder: 'List name'}
+    .col-xs-3
+      %span.help-block
+      = f.object.errors[:name].join(', ')
+
+  %fieldset{class: "form-group row #{"has-danger" if f.object.errors.include?(:description)}"}
+    .col-xs-3
+      = f.text_area :description, {class: 'form-control', placeholder: 'This is a list for...'}
+    .col-xs-3
+      %span.help-block
+      = f.object.errors[:description].join(', ')
+
+  %fieldset{class: "form-group row #{"has-danger" if f.object.errors.include?(:budget_in_euro)}"}
+    .col-xs-3
+      = f.text_field :budget_in_euro, {class: 'form-control', placeholder: 'Monthly budget in € (optional)'}
+    .col-xs-3
+      %span.help-block
+      = f.object.errors[:budget_in_euro].join(', ')
+
+  %fieldset{class: "form-group"}
+    = f.check_box :notifications_enabled
+    Enable email notifications for list
+
+  %fieldset{class: "form-group"}
+    = f.number_field :crit_threshold, placeholder: 0
+    = link_to 'Threshold', ''
+
+  .row
+    .col-xs-2
+      = f.submit 'Submit', class: 'btn btn-primary btn-success'
+    .col-xs-1
+      = link_to 'Back', expense_lists_path, class: 'btn btn-primary btn-danger'
