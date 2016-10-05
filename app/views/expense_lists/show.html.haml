@@ -17,18 +17,5 @@
   = link_to 'Back', expense_lists_path, {class: 'btn btn-primary btn-xs'}
 
 .container-fluid
-  - @expenses.each do |year, month|
-    %h3= year
-    - month.each do |month, expenses|
-      .table_placeholder
-      %h4= month_name(month)
-      %table{class: 'table table table-striped table-bordered table-condensed expense-table', cellspacing: "0"}
-        %thead{class: 'month-row'}
-          %th{class: 'hidden-xs-up'}
-          %th{class: 'col-md-1'} Date
-          %th{class: 'col-md-1'} Where
-          %th{class: 'col-md-1'} Who
-          %th{class: 'col-md-1'} How much
-          %th{class: 'col-md-1'} Cash pool
-        %tbody
-          = render partial: 'expenses_in_list', locals: { expenses: expenses.sort_by(&:expense_date), expense_list: @expense_list, month: month, year: year }
+  - if @expenses
+    = render partial: 'expenses_in_list', locals: { expense_list: @expense_list }
