@@ -32,4 +32,5 @@ end
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring', '~> 1.6.4'
+  gem 'rubocop'
 end
