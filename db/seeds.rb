@@ -34,7 +34,7 @@ user_ids = User.all.map(&:id)
 dates = ((Date.today - 365)..Date.today).to_a
 ExpenseList.all.each do |expense_list|
   (1..25).to_a.sample.times do
-    Expense.create(
+    Expense.new(
       expense_list_id: expense_list.id,
       where: LOCATIONS.sample,
       comment: '',
@@ -42,6 +42,6 @@ ExpenseList.all.each do |expense_list|
       user_id: user_ids.sample,
       cash_desk: CASH_DESK.sample,
       expense_date: dates.sample
-    )
+    ).save(validate: false)
   end
 end
