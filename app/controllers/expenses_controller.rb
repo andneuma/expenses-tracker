@@ -53,7 +53,7 @@ class ExpensesController < ApplicationController
     @expense_list = ExpenseList.find(params[:expense_list_id])
     @expense_list.expenses.find(params[:id]).destroy
 
-    flash[:success] = 'Liste erfolgreich gelöscht'
+    flash[:success] = 'Ausgabe erfolgreich gelöscht'
 
     redirect_to expense_list_path(@expense_list)
   end
