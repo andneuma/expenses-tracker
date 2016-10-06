@@ -1,0 +1,13 @@
+/ DEFINE GENERIC MODAL
+.modal.fade{:id => modal_id}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &#215;
+        %h4.modal-title
+          = modal_title
+      .modal-body
+        %p= modal_body
+      .modal-footer
+        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
