@@ -1,8 +1,11 @@
 .container-fluid
-  .panel-group{id: 'expense-list-panel-group'}
-    - if @expense_lists.any?
-      = render @expense_lists
-    - else
-      %p There is no expense list yet...
   .row
-    = link_to "Create new expense list", new_expense_list_path, { class: 'btn btn-default btn-primary btn-success' }
+    .panel-group{id: 'expense-lists'}
+      - if @expense_lists.any?
+        = render @expense_lists
+      - else
+        %p There is no expense list yet...
+  .row
+    = link_to "Create new expense list", new_expense_list_path, remote: true, class: 'btn btn-default btn-primary btn-success'
+  .row
+    .expense_lists_form{style: "display: none;"}

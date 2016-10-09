@@ -1,4 +1,4 @@
-= form_for @expense_list do |f|
+= form_for @expense_list, remote: true do |f|
   %fieldset{class: "form-group row #{"has-danger" if f.object.errors.include?(:name)}"}
     .col-xs-3
       = f.text_field :name, {class: 'form-control', placeholder: 'List name'}
@@ -32,4 +32,4 @@
     .col-xs-2
       = f.submit 'Submit', class: 'btn btn-primary btn-success'
     .col-xs-1
-      = link_to 'Back', expense_lists_path, class: 'btn btn-primary btn-danger'
+      = link_to 'Cancel', expense_lists_path, class: 'btn btn-primary btn-danger back-link'

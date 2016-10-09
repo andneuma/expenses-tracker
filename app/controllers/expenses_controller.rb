@@ -14,6 +14,11 @@ class ExpensesController < ApplicationController
   def new
     @expense_list = ExpenseList.find(params[:expense_list_id])
     @expense = @expense_list.expenses.new
+
+    respond_to do |format|
+      # format.html
+      format.js
+    end
   end
 
   def create

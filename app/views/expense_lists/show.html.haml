@@ -11,8 +11,7 @@
     = render partial: 'shared/modals/user_stats_modal', locals: {expense_list: @expense_list}
 
 .container-fluid
-  = link_to 'Add expense', new_expense_list_expense_path(@expense_list), {class: 'btn btn-success btn-xs'}
-  = link_to 'Modify list', edit_expense_list_path(@expense_list), {class: 'btn btn-warning btn-xs'}
+  = link_to 'Add expense', new_expense_list_expense_path(@expense_list), remote: true,  class: 'btn btn-success btn-xs'
   = link_to 'Delete list', expense_list_path(@expense_list), {method: 'delete', data: { confirm: 'Bist du dir sicher, dass du die Liste willst?' }, class: 'btn btn-danger btn-xs'}
   = link_to 'Back', expense_lists_path, {class: 'btn btn-primary btn-xs'}
 

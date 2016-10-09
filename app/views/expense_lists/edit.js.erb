@@ -1,0 +1,7 @@
+var form_field = $('.expense_lists_form');
+form_field.html("<%= j render 'form'%>")
+form_field.slideToggle(200);
+
+form_field.on('click', '.back-link', function(){
+  form_field.slideUp(200);
+});
