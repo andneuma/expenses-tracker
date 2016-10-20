@@ -1,5 +1,5 @@
 var form_field = $('.expense_lists_form');
 var expenseLists = $('#expense-lists');
 
-expenseLists.append("<div class='col-xs-12 col-lg-3 col-md-4' id='expense_list_<%= @expense_list.id %>'> <div class='panel panel-default'> <div class='panel-heading'><%= @expense_list.name %> </div></div></div>");
+expenseLists.append("<%= j render @expense_list %>");
 form_field.slideUp(200);

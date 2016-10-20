@@ -1,11 +1,12 @@
 .col-xs-12.col-lg-3.col-md-4{id: "expense_list_#{expense_list.id}"}
   .panel.panel-default
     .panel-heading
+      .glyphicon.glyphicon-cog.pull-right
       = link_to expense_list.name, expense_list_path(expense_list)
     .panel-body
       .links
         = link_to 'Modify list', edit_expense_list_path(expense_list), remote: true
-        = link_to 'Delete list', expense_list_path(expense_list), method: 'delete', remote: true
+        = link_to 'Delete list', expense_list_path(expense_list), method: 'delete', data: { confirm: 'Bist du dir sicher, dass du den Eintrag löschen willst?' }, remote: true
       .description
       %p
       - if expense_list.description.present?
