@@ -1,5 +1,7 @@
-var form_field = $('.expense_lists_form');
+var form_field = $('#expense_list_form_panel');
 var expenseLists = $('#expense-lists');
+var createButton = $('.create-expense-list-button');
 
+form_field.remove();
 expenseLists.append("<%= j render @expense_list %>");
-form_field.slideUp(200);
+createButton.show(200);
