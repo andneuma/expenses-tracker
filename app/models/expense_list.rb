@@ -48,7 +48,7 @@ class ExpenseList < ActiveRecord::Base
 
   def total_expenses_in_list
     total = expenses.map(&:expenses_in_euro).reduce(&:+)
-    total.nil? && 0 || total
+    total ? 0 : total
   end
 
   def expenses_in_list_by_user
