@@ -27,7 +27,6 @@ class ExpenseListsControllerTest < ActionController::TestCase
   end
 
   test 'should update valid changes' do
-    debugger
     put :update, id: @expense_list.id, expense_list:
     {
       name: 'Blubber',
