@@ -11,11 +11,14 @@
 // about supported directives.
 //
 //= require jquery
+//= require dataTables/jquery.dataTables
+//= require dataTables/extras/dataTables.responsive
+//= require jquery-ui
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
 
 jQuery(function() {
-  jQuery('#flash-messages').delay(2000).fadeOut(800)
+  jQuery('#flash-messages').delay(2000).fadeOut(800);
 });
