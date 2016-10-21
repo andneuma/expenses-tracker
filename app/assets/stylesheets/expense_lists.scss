@@ -1,26 +1,42 @@
 @import 'colors';
 
 // PANELS
-.panel-heading {
-  background-color: $navbar-gray;
-  font: bold;
-  font-size: 16px;
-  &:hover {
-    cursor: pointer;
-  }
-}
-
 .panel-group .panel {
     margin-bottom: 15px;
     border-radius: 4px;
     padding-left: 0px;
     &:hover {
-      border-color: rgba(187, 82, 82, 0.8);
+      border-color: lighten($panel-rose, 20);
+      .panel-heading {
+        background-color: lighten($panel-rose, 20);
+      }
+      .panel-footer {
+        background-color: lighten($panel-rose, 20);
+      }
     }
+}
+
+.panel-heading {
+  background-color: $navbar-gray;
+  font: bold;
+  font-size: 16px;
+  margin: 0;
+  &:hover {
+    cursor: pointer;
+  }
+  .expense_list_settings {
+    &:hover {
+      background-color: transparent;
+    }
+    &:focus {
+      background-color: transparent;
+    }
+  }
 }
 
 .panel-footer {
   font-style: italic;
+  margin: 0;
 }
 
 .create-expense-list-button {
