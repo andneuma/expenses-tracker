@@ -1,0 +1,12 @@
+.container
+  .h4 Login
+  = form_for :sessions, url: login_path do |f|
+    %fieldset.form-group.row
+      .col-xs-3
+        = f.text_field :email, {class: 'form-control', placeholder: 'Email address'}
+    %fieldset.form-group.row
+      .col-xs-3
+        = f.password_field :password, {class: 'form-control', placeholder: 'Password'}
+    .row
+      .col-lg-2.col-md-2.col-sm-2.col-xs2
+        = f.submit 'Submit', class: 'btn btn-primary btn-success'

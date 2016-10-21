@@ -14,6 +14,11 @@ class ExpensesController < ApplicationController
   def new
     @expense_list = ExpenseList.find(params[:expense_list_id])
     @expense = @expense_list.expenses.new
+
+    respond_to do |format|
+      # format.html
+      format.js
+    end
   end
 
   def create
@@ -53,7 +58,7 @@ class ExpensesController < ApplicationController
     @expense_list = ExpenseList.find(params[:expense_list_id])
     @expense_list.expenses.find(params[:id]).destroy
 
-    flash[:success] = 'Liste erfolgreich gelöscht'
+    flash[:success] = 'Ausgabe erfolgreich gelöscht'
 
     redirect_to expense_list_path(@expense_list)
   end
@@ -61,7 +66,7 @@ class ExpensesController < ApplicationController
   private
 
   def expense_params
-    params.require(:expense).permit(:where, :when, :comment, :expenses_in_euro, :user_id, :cash_desk)
+    params.require(:expense).permit(:where, :expense_date, :comment, :expenses_in_euro, :user_id, :cash_desk)
   end
 
   def require_authentication

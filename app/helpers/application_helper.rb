@@ -52,6 +52,6 @@ module ApplicationHelper
   end
 
   def simple_date(date)
-    date.strftime("%d.%m.%Y")
+    date.strftime('%d.%m.%Y')
   end
 end

@@ -27,13 +27,21 @@ class ExpenseListsControllerTest < ActionController::TestCase
   end
 
   test 'should update valid changes' do
-    put :update, id: @expense_list.id, expense_list: { name: 'Blubber', description: 'lalala' }
+    put :update, id: @expense_list.id, expense_list:
+    {
+      name: 'Blubber',
+      description: 'lalala'
+    }
     assert_response :success
     assert_template 'expense_lists/show'
   end
 
   test 'should not update invalid changes to given expense list' do
-    put :update, id: @expense_list.id, expense_list: { name: '', description: 'andere Beschreibung' }
+    put :update, id: @expense_list.id, expense_list:
+    {
+      name: '',
+      description: 'andere Beschreibung'
+    }
     @expense_list.reload.description
     assert 'Hier nehmen wir alle Essenseinkaufe auf' == @expense_list.description
   end
@@ -41,13 +49,22 @@ class ExpenseListsControllerTest < ActionController::TestCase
   # CREATE
   test 'should add new valid expense list' do
     assert_difference 'ExpenseList.count', +1 do
-      post :create, expense_list: { name: 'Blubber', description: 'lalala', budget_in_euro: 23 }
+      post :create, expense_list:
+      {
+        name: 'Blubber',
+        description: 'lalala',
+        budget_in_euro: 23
+      }
     end
   end
 
   test 'should not add invalid expense list' do
     assert_no_difference 'ExpenseList.count' do
-      post :create, expense_list: { description: 'lalala', budget_in_euro: 23 }
+      post :create, expense_list:
+      {
+        description: 'lalala',
+        budget_in_euro: 23
+      }
     end
   end
 

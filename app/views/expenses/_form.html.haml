@@ -1,0 +1,39 @@
+= form_for([@expense_list, @expense]) do |f|
+  %fieldset{class: "form-group row #{"has-error" if f.object.errors.include?(:where)}"}
+    .col-xs-3
+      = f.text_field :where, {class: 'form-control', placeholder: 'Shopping location'}
+      %span.help-block
+        = f.object.errors[:where].join(', ')
+
+  %fieldset{class: "form-group row #{"has-error" if f.object.errors.include?(:expenses_in_euro)}"}
+    .col-xs-3
+      = f.text_field :expenses_in_euro, {class: 'form-control', placeholder: '23.45'}
+      %span.help-block
+        = f.object.errors[:expenses_in_euro].join(', ')
+
+  %fieldset{class: "form-group row #{"has-error" if f.object.errors.include?(:expense_date)}"}
+    .col-xs-3
+      = f.text_field :expense_date, {class: 'form-control', placeholder: '23.04.2016' }
+      %span.help-block
+        = f.object.errors[:expense_date].join(', ')
+
+  %fieldset{class: "form-group row #{"has-error" if f.object.errors.include?(:comment)}"}
+    .col-xs-3
+      = f.text_field :comment, {class: 'form-control', placeholder: "Comment, e.g. 'Bought lot's of coffee..."}
+      %span.help-block
+        = f.object.errors[:comment].join(', ')
+
+  %fieldset{class: "form-group"}
+    .col-xs-3
+      = f.label 'Who went shopping:'
+      = f.collection_select :user_id, User.all, :id, :name
+
+  %fieldset{class: 'form-group'}
+    .col-xs-3
+      = f.label '...from which account:'
+      = f.collection_select :cash_desk, Expense::CASH_DESK, :to_s, :humanize
+
+  .row
+    .col-xs-2
+      = f.submit 'Submit', class: 'btn btn-primary btn-success'
+      = link_to 'Back', expense_lists_path, class: 'btn btn-primary btn-danger'

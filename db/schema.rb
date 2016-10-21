@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160526123057) do
+ActiveRecord::Schema.define(version: 20161005121537) do
 
   create_table "expense_lists", force: :cascade do |t|
     t.string   "name"
@@ -27,13 +27,13 @@ ActiveRecord::Schema.define(version: 20160526123057) do
   create_table "expenses", force: :cascade do |t|
     t.string   "where"
     t.text     "comment"
-    t.date     "when"
     t.decimal  "expenses_in_euro"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "expense_list_id"
     t.integer  "user_id"
     t.string   "cash_desk"
+    t.datetime "expense_date"
   end
 
   add_index "expenses", ["expense_list_id"], name: "index_expenses_on_expense_list_id"

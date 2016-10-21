@@ -2,8 +2,8 @@ class ExpenseList < ActiveRecord::Base
   has_many :expenses
   validates :name, presence: true, length: { minimum: 3, maximum: 50 }
 
-  before_destroy :notify_about_list_removal
-  after_save :notify_about_list_creation
+  before_destroy :notify_about_list_removal if Rails.env == 'production'
+  after_save :notify_about_list_creation if Rails.env == 'production'
 
   # EXPORT TO CSV
   def to_csv
@@ -34,7 +34,7 @@ class ExpenseList < ActiveRecord::Base
   # VIRTUAL ATTRIBUTES
   def expenses_in_month(month, year)
     expenses.select do |e|
-      e.when.strftime('%m').to_i == month.to_i && e.when.strftime('%Y').to_i == year.to_i
+      e.month == month.to_i && e.year == year.to_i
     end
   end
 
@@ -48,10 +48,22 @@ class ExpenseList < ActiveRecord::Base
 
   def total_expenses_in_list
     total = expenses.map(&:expenses_in_euro).reduce(&:+)
-    total.nil? && 0 || total
+    total ? 0 : total
   end
 
   def expenses_in_list_by_user
     expenses.group_by(&:user_id)
+  end
+
+  def expenses_in_list_by_year
+    expenses.group_by(&:year)
+  end
+
+  def expenses_in_list_by_year_month
+    monthly_expenses = {}
+    expenses_in_list_by_year.each do |year, expenses|
+      monthly_expenses[year] = expenses.group_by(&:month)
+    end
+    monthly_expenses
   end
 end

@@ -1,0 +1,5 @@
+var form_field = $('.expense_lists_form');
+var expenseLists = $('#expense-lists');
+
+expenseLists.append("<%= j render @expense_list %>");
+form_field.slideUp(200);

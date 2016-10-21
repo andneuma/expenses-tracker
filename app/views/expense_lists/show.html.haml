@@ -1,0 +1,19 @@
+.container-fluid
+  %h2= @expense_list.name
+  %p.text-muted= @expense_list.description
+  %p.text-muted
+    %i
+      Total expenses in list: #{@expense_list.total_expenses_in_list}
+  %p.text-muted.small
+    = link_to 'Download as CSV', expense_list_path(@expense_list, format: "csv")
+    |
+    = link_to 'Show user stats', '#', { 'data-toggle' => 'modal', 'data-target' => "#user_stats_modal" }
+    = render partial: 'shared/modals/user_stats_modal', locals: {expense_list: @expense_list}
+
+.container-fluid
+  = link_to 'Add expense', new_expense_list_expense_path(@expense_list), remote: true,  class: 'btn btn-success btn-xs'
+  = link_to 'Back', expense_lists_path, {class: 'btn btn-primary btn-xs'}
+
+.container-fluid
+  - if @expenses
+    = render partial: 'expenses_in_list', locals: { expense_list: @expense_list }

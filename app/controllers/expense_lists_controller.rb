@@ -8,11 +8,16 @@ class ExpenseListsController < ApplicationController
 
   def new
     @expense_list = ExpenseList.new
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show
     @expense_list = ExpenseList.find(params[:id])
-    @expenses = @expense_list.expenses
+    @expenses = @expense_list.expenses_in_list_by_year_month
 
     respond_to do |format|
       format.html
@@ -24,17 +29,32 @@ class ExpenseListsController < ApplicationController
   def create
     @expense_list = ExpenseList.new(expense_list_params)
     if @expense_list.save
-      flash[:success] = "Neue Ausgabenliste angelegt: #{@expense_list.name}"
-      render :show
+      respond_to do |format|
+        # format.html do
+        #   flash[:success] = "Neue Ausgabenliste angelegt: #{@expense_list.name}"
+        #   render :show
+        # end
+        format.js
+      end
     else
-      @errors = @expense_list.errors
-      flash[:danger] = "Fehler! Ausgabenliste #{@expense_list.name} konnte nicht angelegt werden"
-      render :new
+      respond_to do |format|
+        format.html do
+          @errors = @expense_list.errors
+          flash[:danger] = "Fehler! Ausgabenliste #{@expense_list.name} konnte nicht angelegt werden"
+          render :new
+        end
+        format.js
+      end
     end
   end
 
   def edit
     @expense_list = ExpenseList.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def update
@@ -54,9 +74,14 @@ class ExpenseListsController < ApplicationController
     @expense_list = ExpenseList.find(params[:id])
     @expense_list_name = @expense_list.name
     @expense_list.destroy
-    flash[:success] = 'List deleted'
 
-    redirect_to expense_lists_path
+    respond_to do |format|
+      format.html do
+        flash[:success] = 'List deleted'
+        redirect_to expense_lists_path
+      end
+      format.js
+    end
   end
 
   private

@@ -3,13 +3,15 @@
 expensive:
   where: Kaisers
   comment: Musste zu Kaisers, sorry
-  when: 2016-04-10
+  expense_date: 2016-04-10
   expenses_in_euro: 123
   expense_list: Essensliste
+  user: Andi
 
 cheap:
   where: Aldi
   comment: bought no coffee
-  when: 2016-04-11
+  expense_date: 2016-04-11
   expenses_in_euro: 32.0
   expense_list: Essensliste
+  user: Andi

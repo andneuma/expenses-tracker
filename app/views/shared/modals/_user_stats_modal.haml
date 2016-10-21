@@ -1,0 +1,26 @@
+.modal.fade{id: 'user_stats_modal'}
+  .modal-dialog{role: 'document'}
+    .modal-content
+      .modal-header
+        %button{type: 'button', class: 'close', 'data-dismiss' => 'modal', 'aria-label' => 'Close'}
+          %span{'aria-hidden' => "true"}close
+        .h4.modal-title
+          User expenses stats for
+          = expense_list.name
+        .modal-body
+          %p
+            The following table lists the sums of expenses by user
+            %small= "(#{simple_date(expense_list.created_at)} - #{simple_date(Date.today)})"
+          %table.table.table-striped.table-bordered.table-condensed.user-stats-table{cellspacing: "0"}
+            %thead.month-row
+              %tr
+                %th Who
+                %th Total
+            %tbody
+              - expense_list.expenses_in_list_by_user.map do |user, expenses|
+                %tr
+                  %td= User.find(user).name
+                  %td= "#{expenses.map(&:expenses_in_euro).reduce(&:+)}€"
+              %tr.monthly-totals-row
+                %td Sum
+                %td= "#{expense_list.total_expenses_in_list}€"

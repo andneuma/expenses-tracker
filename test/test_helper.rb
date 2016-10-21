@@ -6,7 +6,11 @@ require "minitest/rails"
 require "minitest/rails/capybara" # For integration tests
 
 reporter_options = { color: true }
-Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(reporter_options)]
+Minitest::Reporters.use!(
+  # Minitest::Reporters::DefaultReporter.new(reporter_options),
+  Minitest::Reporters::SpecReporter.new,
+  ENV,
+  Minitest.backtrace_filter)
 
 
 class ActiveSupport::TestCase

@@ -1,0 +1,5 @@
+.container-fluid
+  - flash.each do |type, message|
+    .alert{class: "alert-#{bootstrap_class_for(type)}", id: 'flash-messages'}
+      %button.close.btn-xs.glyphicon.glyphicon-ok.glyph-button{'data-dismiss' => 'alert'}
+      = message

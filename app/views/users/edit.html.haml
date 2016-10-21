@@ -1,0 +1,29 @@
+.container
+  .h4 User-Details bearbeiten
+  = form_for @user do |f|
+  %fieldset.form-group.row{class: "#{" has-error" if f.object.errors.include?(:name)}"}
+    .col-xs-3
+      = f.text_field :name, {class: 'form-control', placeholder: 'Name'}
+    .col-xs-3
+      %span.help-block= f.object.errors[:name].join(', ')
+
+  %fieldset.form-group.row{class: "#{" has-error" if f.object.errors.include?(:email)}"}
+    .col-xs-3
+      = f.text_field :email, {class: 'form-control', placeholder: 'Email address'}
+    .col-xs-3
+      %span.help-block= f.object.errors[:email].join(', ')
+
+  %fieldset.form-group.row{class: "#{" has-error" if f.object.errors.include?(:password)}"}
+    .col-xs-3
+      = f.password_field :password, {class: 'form-control', placeholder: 'Password'}
+    .col-xs-3
+      %span.help-block= f.object.errors[:password].join(', ')
+
+  %fieldset.form-group.row{class: "#{" has-error" if f.object.errors.include?(:password_confirmation)}"}
+    .col-xs-3
+      = f.password_field :password_confirmation, {class: 'form-control', placeholder: 'Confirm password'}
+    .col-xs-3
+      %span.help-block= f.object.errors[:password_confirmation].join(', ')
+
+    = f.submit 'Abschicken', {class: 'btn btn-primary btn-success'}
+    = link_to 'Abbrechen', root_path, {class: 'btn btn-primary btn-danger'}

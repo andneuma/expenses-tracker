@@ -1,0 +1,13 @@
+/ DEFINE COMMENT MODAL
+.modal.fade{:id => "modal-#{expense.id}"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &#215;
+        %h4.modal-title
+          Comment for expense from #{"'#{expense.expense_date}'"}
+      .modal-body
+        %p= expense.comment.empty? && 'No comment supplied...' || expense.comment
+      .modal-footer
+        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
