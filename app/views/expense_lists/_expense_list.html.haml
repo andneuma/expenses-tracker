@@ -1,25 +1,25 @@
 .col-xs-12.col-lg-3.col-md-4{ id: "expense_list_#{expense_list.id}" }
-  .panel.panel-default
-    = link_to expense_list_path(expense_list) do
-      .panel-heading.row
-        .col-xs-10
-          %h4= expense_list.name
-        .col-xs-2
-          %ul.nav.nav-pills
-            %li.dropdown
-              %a.dropdown-toggle.glyphicon.glyphicon-cog.expense_list_settings{ 'data-toggle': 'dropdown', href: '#expense_list_settings' }
-              %ul.dropdown-menu
-                %li= link_to 'Modify list', edit_expense_list_path(expense_list), remote: true
-                %li= link_to 'Delete list', expense_list_path(expense_list), method: 'delete', data: { confirm: 'Bist du dir sicher, dass du den Eintrag löschen willst?' }, remote: true
+  .panel.panel-default.expense-list{ 'data-id' => "#{expense_list.id}" }
+    .panel-heading.row
+      .col-xs-8
+        %h4= expense_list.name
+      .col-xs-4.expense_list_buttons_container
+        %ul.nav.nav-pills.expense_list_buttons
+          %li= link_to '', expense_list_path(expense_list), class: 'expense_list_button glyphicon glyphicon-share-alt'
+          %li.dropdown
+            %a.dropdown-toggle.glyphicon.glyphicon-cog.expense_list_button{ 'data-toggle': 'dropdown', href: '#expense_list_settings' }
+            %ul.dropdown-menu
+              %li= link_to 'Modify list', edit_expense_list_path(expense_list), remote: true
+              %li= link_to 'Delete list', expense_list_path(expense_list), method: 'delete', data: { confirm: 'Bist du dir sicher, dass du den Eintrag löschen willst?' }, remote: true
     .panel-body
       .description
       %p
       - if expense_list.description.present?
-        = expense_list.description
+        = truncate(expense_list.description, length: 300)
       - else
         %i
           No description supplied, add one
-          =link_to 'here', edit_expense_list_path(expense_list)
+          =link_to 'here', edit_expense_list_path(expense_list), remote: true
       .email-notification.text-muted
         (Email notifications enabled)
     .panel-footer

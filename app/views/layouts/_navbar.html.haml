@@ -1,6 +1,6 @@
-%nav.navbar.navbar-default{:role => "navigation"}
+%nav.navbar.navbar-default{ :role => 'navigation' }
   .navbar-header
-    %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+    %button.navbar-toggle{ 'data-target' => '.navbar-collapse', 'data-toggle' => 'collapse', :type => 'button' }
       %span.icon-bar
       %span.icon-bar
       %span.icon-bar
@@ -11,7 +11,8 @@
       %li.nav-item
         = link_to 'Expense lists', expense_lists_path
       %li.nav-item.dropdown
-        %a.nav-link.dropdown-toggle.btn.btn-default.btn-xs.glyphicon.glyphicon-user.glyph-button{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+        %a.nav-link.dropdown-toggle.glyphicon.glyphicon-user.glyph-button{ 'aria-expanded' => 'false', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown', :href => '#', :role => 'button' }
+          %span.caret
         .dropdown-menu
           = link_to 'User settings', edit_user_path(session[:user_id]), class: 'btn dropdown-item'
           %br/

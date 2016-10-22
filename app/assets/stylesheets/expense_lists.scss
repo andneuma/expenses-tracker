@@ -5,7 +5,57 @@
   margin-bottom: 15px;
   border-radius: 4px;
   padding-left: 0px;
+  height: 302px;
+
+  .panel-heading {
+    // padding-left: 0;
+    // padding-right: 0;
+    background-color: $navbar-gray;
+    font: bold;
+    font-size: 16px;
+    margin: 0;
+    height: 55px;
+
+    #expense_list_name {
+      height: 35px;
+    }
+
+    .expense_list_buttons_container {
+      padding-right: 0;
+    }
+
+    .expense_list_buttons {
+      float: right;
+    }
+
+    .expense_list_button {
+      &:hover {
+        background-color: transparent;
+      }
+      &:focus {
+        background-color: transparent;
+      }
+    }
+  }
+
+  .panel-footer {
+    font-style: italic;
+    margin: 0;
+    height: 45px;
+    #expense_list_budget_in_euro {
+      height: 25px;
+    }
+  }
+
+  .panel-body {
+    height: 200px;
+    #expense_list_description {
+      height: 150px;
+    }
+  }
+
   &:hover {
+    cursor: pointer;
     border-color: lighten($panel-rose, 20);
     .panel-heading {
       background-color: lighten($panel-rose, 20);
@@ -14,29 +64,6 @@
       background-color: lighten($panel-rose, 20);
     }
   }
-}
-
-.panel-heading {
-  background-color: $navbar-gray;
-  font: bold;
-  font-size: 16px;
-  margin: 0;
-  &:hover {
-    cursor: pointer;
-  }
-  .expense_list_settings {
-    &:hover {
-      background-color: transparent;
-    }
-    &:focus {
-      background-color: transparent;
-    }
-  }
-}
-
-.panel-footer {
-  font-style: italic;
-  margin: 0;
 }
 
 .create-expense-list-button {
