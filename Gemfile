@@ -18,6 +18,8 @@ gem 'figaro'
 gem 'bcrypt'
 gem 'whenever'
 gem 'thin'
+gem 'jquery-datatables-rails', '~> 3.4.0'
+gem 'jquery-ui-rails'
 
 group :development, :test do
   gem 'byebug'

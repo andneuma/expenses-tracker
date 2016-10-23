@@ -1,7 +1,14 @@
-var form_field = $('.expense_lists_form');
-form_field.html("<%= j render 'form'%>")
-form_field.slideToggle(200);
+var form = "<%= j render 'form' %>";
+var listId = "<%= @expense_list.id %>";
+var current_panel = $('#expense_list_' + listId)
+var createButton = $('.create-expense-list-button');
 
-form_field.on('click', '.back-link', function(){
-  form_field.slideUp(200);
+current_panel.after(form);
+current_panel.remove();
+createButton.hide();
+
+form.on('click', '.back-link', function(){
+  form.before(current_panel);
+  form.remove();
+  createButton.show();
 });

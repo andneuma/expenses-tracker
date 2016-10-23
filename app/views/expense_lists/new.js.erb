@@ -1,7 +1,16 @@
-var form_field = $('.expense_lists_form');
-form_field.html("<%= j render 'form'%>")
-form_field.slideToggle(200);
+var form = "<%= j render 'form' %>";
+var expenseLists = $('.expense-list');
+var expenseListsPanel = $('#expense-lists');
+var createButton = $('.create-expense-list-button');
+var links = $('.expense-list a');
+
+expenseLists.css('opacity', '0.3');
+expenseListsPanel.append(form).fadeIn(200);
+links.hide();
+createButton.hide();
 
 form_field.on('click', '.back-link', function(){
   form_field.slideUp(200);
+  links.show();
+  createButton.show();
 });
