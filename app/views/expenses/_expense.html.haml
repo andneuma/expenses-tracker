@@ -1,0 +1,15 @@
+%tr
+  %td{class: 'col-md-1'}
+    = link_to edit_expense_list_expense_path(expense_list, expense), remote: true, data: { toggle: 'modal', target: '#expense_form_modal' } do
+      %span.btn.btn-default.btn-xs.glyphicon.glyphicon-pencil.glyph-button
+    = render partial: 'expenses/expense_form_modal'
+    = link_to expense_list_expense_path(expense_list, expense), method: 'delete', 'data-confirm' => 'Bist du dir sicher, dass du den Eintrag löschen willst?' do
+      %span.btn.btn-default.btn-xs.glyphicon.glyphicon-trash.glyph-button
+    = link_to '', data: { toggle: 'modal', target: "#modal-#{expense.id}" } do
+      %span.btn.btn-default.btn-xs.glyphicon.glyphicon-search.glyph-button'
+    = render partial: 'expenses/expense_comment_modal', locals: {expense: expense}
+  %td= expense.expense_date.strftime("%d.%m")
+  %td= expense.where
+  %td= expense.user && expense.user.name || '???'
+  %td= "#{expense.expenses_in_euro}€"
+  %td= expense.cash_desk

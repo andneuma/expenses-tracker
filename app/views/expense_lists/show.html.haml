@@ -7,13 +7,15 @@
   %p.text-muted.small
     = link_to 'Download as CSV', expense_list_path(@expense_list, format: "csv")
     |
-    = link_to 'Show user stats', '#', { 'data-toggle' => 'modal', 'data-target' => "#user_stats_modal" }
-    = render partial: 'shared/modals/user_stats_modal', locals: {expense_list: @expense_list}
+    = link_to 'Show user stats', '', data: { 'toggle' => 'modal', 'target' => "#user_stats_modal" }
+    = render partial: 'user_stats_modal'
 
 .container-fluid
-  = link_to 'Add expense', new_expense_list_expense_path(@expense_list), remote: true,  class: 'btn btn-success btn-xs'
-  = link_to 'Back', expense_lists_path, {class: 'btn btn-primary btn-xs'}
+  .row
+    .col-xs-12
+      = link_to 'Create new expense', new_expense_list_expense_path(@expense_list), remote: true, class: 'btn btn-success btn-xs create_new_expense_button', data: { toggle: 'modal', target: '#expense_form_modal' }
+    = render partial: 'expenses/expense_form_modal'
 
-.container-fluid
+.container-fluid#expenses_in_list
   - if @expenses
     = render partial: 'expenses_in_list', locals: { expense_list: @expense_list }

@@ -30,10 +30,10 @@ class ExpenseListsController < ApplicationController
     @expense_list = ExpenseList.new(expense_list_params)
     if @expense_list.save
       respond_to do |format|
-        # format.html do
-        #   flash[:success] = "Neue Ausgabenliste angelegt: #{@expense_list.name}"
-        #   render :show
-        # end
+        format.html do
+          flash[:success] = "Neue Ausgabenliste angelegt: #{@expense_list.name}"
+          render :show
+        end
         format.js
       end
     else
@@ -61,8 +61,13 @@ class ExpenseListsController < ApplicationController
     @expense_list = ExpenseList.find(params[:id])
 
     if @expense_list.update(expense_list_params)
-      flash[:success] = 'Änderungen erfolgreich übernommen'
-      render :show
+      respond_to do |format|
+        format.js
+        format.html do
+          flash[:success] = 'Änderungen erfolgreich übernommen'
+          render :show
+        end
+      end
     else
       @errors = @expense_list.errors
       flash[:danger] = 'Änderungen konnten nicht übernommen werden'

@@ -1,14 +1,16 @@
 var form = "<%= j render 'form' %>";
 var listId = "<%= @expense_list.id %>";
-var current_panel = $('#expense_list_' + listId)
+var allPanels = $('.expense-list')
+var currentPanel = $('#expense_list_' + listId)
 var createButton = $('.create-expense-list-button');
 
-current_panel.after(form);
-current_panel.remove();
+allPanels.css('opacity', '0.3');
+currentPanel.after(form);
+currentPanel.remove();
 createButton.hide();
 
 form.on('click', '.back-link', function(){
-  form.before(current_panel);
+  form.before(currentPanel);
   form.remove();
   createButton.show();
 });
