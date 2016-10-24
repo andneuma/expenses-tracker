@@ -7,8 +7,6 @@ class ExpensesController < ApplicationController
   end
 
   def show
-    # expense_list = ExpenseList.find(params[:expense_list_id])
-    # @expense = expense_list.expenses.find(params[:id])
   end
 
   def new
@@ -21,19 +19,21 @@ class ExpensesController < ApplicationController
   def create
     @expense_list = ExpenseList.find(params[:expense_list_id])
     @expense = @expense_list.expenses.create(expense_params)
-    respond_to do |format|
-      if @expense.save
+    if @expense.save
+      respond_to do |format|
         format.js
         format.html do
           flash[:success] = 'Neue Ausgabe erfolgreich angelegt'
           redirect_to expense_list_path(@expense_list)
         end
-      else
-        @errors = @expense.errors
+      end
+    else
+      @errors = @expense.errors
+      respond_to do |format|
         format.js
         format.html do
-          # flash[:danger] = 'Ausgabe konnte nicht angelegt werden'
-          # render :new
+          flash[:danger] = 'Ausgabe konnte nicht angelegt werden'
+          render :new
         end
       end
     end

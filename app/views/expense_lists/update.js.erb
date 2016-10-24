@@ -1,0 +1,10 @@
+var form = $('#expense_list_form_panel')
+var modified_expense_list = "<%= j render @expense_list %>"
+var expenseLists = $('#expense-lists');
+var createButton = $('.create-expense-list-button');
+var allPanels = $('.expense-list')
+
+allPanels.css('opacity', '1');
+form.remove();
+expenseLists.append(modified_expense_list);
+createButton.show();

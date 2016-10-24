@@ -8,12 +8,13 @@
     = link_to 'Download as CSV', expense_list_path(@expense_list, format: "csv")
     |
     = link_to 'Show user stats', '', data: { 'toggle' => 'modal', 'target' => "#user_stats_modal" }
-    = render partial: 'shared/modals/user_stats_modal', locals: {expense_list: @expense_list}
+    = render partial: 'user_stats_modal'
 
 .container-fluid
-  .row.center
-    = link_to 'Create new expense', new_expense_list_expense_path(@expense_list), remote: true, class: 'btn btn-success btn-xs', data: { toggle: 'modal', target: '#new_expense_modal' }
-    = render partial: 'expenses/new_expense_modal'
+  .row
+    .col-xs-12
+      = link_to 'Create new expense', new_expense_list_expense_path(@expense_list), remote: true, class: 'btn btn-success btn-xs create_new_expense_button', data: { toggle: 'modal', target: '#expense_form_modal' }
+    = render partial: 'expenses/expense_form_modal'
 
 .container-fluid#expenses_in_list
   - if @expenses

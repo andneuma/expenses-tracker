@@ -1,15 +1,15 @@
-= form_for @expense_list, remote: true do |f|
+= form_for @expense_list, remote: true, authenticity_token: true do |f|
   .col-xs-12.col-lg-3.col-md-4#expense_list_form_panel
     .panel.panel-default
       .panel-heading
         = f.text_field :name, {class: 'form-control', placeholder: 'List name'}
       .panel-body
         .description
-        %p
-          = f.text_area :description, {class: 'form-control', placeholder: 'This is a list for...'}
-        %p
-          = f.check_box :notifications_enabled
-          Enable email notifications for list
+          %p
+            = f.text_area :description, {class: 'form-control', placeholder: 'This is a list for...'}
+          %p
+            = f.check_box :notifications_enabled
+            Enable email notifications for list
       .panel-footer
         = f.text_field :budget_in_euro, {class: 'form-control', placeholder: 'Monthly budget in € (optional)'}
 
