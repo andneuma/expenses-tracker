@@ -1,5 +1,5 @@
 class ExpenseList < ActiveRecord::Base
-  has_many :expenses
+  has_many :expenses, dependent: :destroy
   validates :name, presence: true, length: { minimum: 3, maximum: 50 }
 
   before_destroy :notify_about_list_removal if Rails.env == 'production'
