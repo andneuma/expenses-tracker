@@ -37,7 +37,7 @@ class ExpenseList < ActiveRecord::Base
   end
 
   def sum_of_exp_in_month(month, year)
-    expenses_in_month(month, year).pluck(:expenses_in_euro).sum.to_i || 0
+    expenses_in_month(month, year).sum(:expenses_in_euro) || 0
   end
 
   def euros_left_in_month(month, year)
@@ -45,7 +45,7 @@ class ExpenseList < ActiveRecord::Base
   end
 
   def total_expenses_in_list
-    total = expenses.pluck(:expenses_in_euro).sum.to_i
+    total = expenses.sum(:expenses_in_euro)
     total ? 0 : total
   end
 
