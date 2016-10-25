@@ -14,6 +14,9 @@ class Expense < ActiveRecord::Base
   after_save :alert_on_critical_budget if Rails.env == 'production'
 
   # Virtual attributes
+  scope :created_in_year, -> (year) { where("date_part('year', expense_date) = ?", year) }
+  scope :created_in_month, -> (month) { where("date_part('month', expense_date) = ?", month ) }
+
   def month
     expense_date.strftime('%m').to_i
   end

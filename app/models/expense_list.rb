@@ -1,5 +1,5 @@
 class ExpenseList < ActiveRecord::Base
-  has_many :expenses
+  has_many :expenses, dependent: :destroy
   validates :name, presence: true, length: { minimum: 3, maximum: 50 }
 
   before_destroy :notify_about_list_removal if Rails.env == 'production'
@@ -33,13 +33,11 @@ class ExpenseList < ActiveRecord::Base
 
   # VIRTUAL ATTRIBUTES
   def expenses_in_month(month, year)
-    expenses.select do |e|
-      e.month == month.to_i && e.year == year.to_i
-    end
+    expenses.created_in_year(year).created_in_month(month)
   end
 
   def sum_of_exp_in_month(month, year)
-    expenses_in_month(month, year).map(&:expenses_in_euro).reduce(&:+).to_i || 0
+    expenses_in_month(month, year).sum(:expenses_in_euro) || 0
   end
 
   def euros_left_in_month(month, year)
@@ -47,7 +45,7 @@ class ExpenseList < ActiveRecord::Base
   end
 
   def total_expenses_in_list
-    total = expenses.map(&:expenses_in_euro).reduce(&:+)
+    total = expenses.sum(:expenses_in_euro)
     total ? 0 : total
   end
 

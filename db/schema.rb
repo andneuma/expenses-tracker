@@ -13,13 +13,16 @@
 
 ActiveRecord::Schema.define(version: 20161005121537) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "expense_lists", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.decimal  "budget_in_euro"
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
-    t.text     "members",               default: "--- []\n"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.text     "members",               default: [],                array: true
     t.boolean  "notifications_enabled", default: true
     t.decimal  "crit_threshold",        default: 0.15
   end
@@ -36,8 +39,8 @@ ActiveRecord::Schema.define(version: 20161005121537) do
     t.datetime "expense_date"
   end
 
-  add_index "expenses", ["expense_list_id"], name: "index_expenses_on_expense_list_id"
-  add_index "expenses", ["user_id"], name: "index_expenses_on_user_id"
+  add_index "expenses", ["expense_list_id"], name: "index_expenses_on_expense_list_id", using: :btree
+  add_index "expenses", ["user_id"], name: "index_expenses_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -48,4 +51,6 @@ ActiveRecord::Schema.define(version: 20161005121537) do
     t.boolean  "is_admin",        default: false
   end
 
+  add_foreign_key "expenses", "expense_lists"
+  add_foreign_key "expenses", "users"
 end
