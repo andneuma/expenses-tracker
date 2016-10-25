@@ -1,5 +1,6 @@
 class ExpenseListsController < ApplicationController
   before_action :require_authentication
+  before_action :get_expense_list, only: [:show, :edit, :update, :destroy]
 
   # REST functions
   def index
@@ -8,7 +9,6 @@ class ExpenseListsController < ApplicationController
 
   def new
     @expense_list = ExpenseList.new
-
     respond_to do |format|
       format.html
       format.js
@@ -16,9 +16,7 @@ class ExpenseListsController < ApplicationController
   end
 
   def show
-    @expense_list = ExpenseList.find(params[:id])
     @expenses = @expense_list.expenses_in_list_by_year_month
-
     respond_to do |format|
       format.html
       format.csv { send_data @expense_list.to_csv,
@@ -49,8 +47,6 @@ class ExpenseListsController < ApplicationController
   end
 
   def edit
-    @expense_list = ExpenseList.find(params[:id])
-
     respond_to do |format|
       format.html
       format.js
@@ -58,8 +54,6 @@ class ExpenseListsController < ApplicationController
   end
 
   def update
-    @expense_list = ExpenseList.find(params[:id])
-
     if @expense_list.update(expense_list_params)
       respond_to do |format|
         format.js
@@ -76,10 +70,7 @@ class ExpenseListsController < ApplicationController
   end
 
   def destroy
-    @expense_list = ExpenseList.find(params[:id])
-    @expense_list_name = @expense_list.name
     @expense_list.destroy
-
     respond_to do |format|
       format.html do
         flash[:success] = 'List deleted'
@@ -90,6 +81,10 @@ class ExpenseListsController < ApplicationController
   end
 
   private
+
+  def get_expense_list
+    @expense_list = ExpenseList.find(params[:id])
+  end
 
   def expense_list_params
     params.require(:expense_list).permit(:name, :description, :budget_in_euro)

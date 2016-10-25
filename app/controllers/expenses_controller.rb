@@ -1,23 +1,21 @@
 class ExpensesController < ApplicationController
   before_action :require_authentication
+  before_action :get_expense_list
 
   def index
-    expense_list = ExpenseList.find(params[:expense_list_id])
-    @expenses = expense_list.expenses
+    @expenses = @expense_list.expenses
   end
 
   def show
   end
 
   def new
-    @expense_list = ExpenseList.find(params[:expense_list_id])
     @expense = @expense_list.expenses.new
 
     respond_to :html, :js
   end
 
   def create
-    @expense_list = ExpenseList.find(params[:expense_list_id])
     @expense = @expense_list.expenses.create(expense_params)
     if @expense.save
       respond_to do |format|
@@ -40,12 +38,10 @@ class ExpensesController < ApplicationController
   end
 
   def edit
-    @expense_list = ExpenseList.find(params[:expense_list_id])
     @expense = @expense_list.expenses.find(params[:id])
   end
 
   def update
-    @expense_list = ExpenseList.find(params[:expense_list_id])
     @expense = @expense_list.expenses.find(params[:id])
 
     if @expense.update(expense_params)
@@ -59,7 +55,6 @@ class ExpensesController < ApplicationController
   end
 
   def destroy
-    @expense_list = ExpenseList.find(params[:expense_list_id])
     @expense_list.expenses.find(params[:id]).destroy
 
     flash[:success] = 'Ausgabe erfolgreich gelöscht'
@@ -68,6 +63,10 @@ class ExpensesController < ApplicationController
   end
 
   private
+
+  def get_expense_list
+    @expense_list = ExpenseList.find(params[:expense_list_id])
+  end
 
   def expense_params
     params.require(:expense).permit(:where, :expense_date, :comment, :expenses_in_euro, :user_id, :cash_desk)
