@@ -1,0 +1,25 @@
+.col-xs-12.col-lg-3.col-md-4{ id: "todo_list_#{todo_list.id}" }
+  .panel.panel-default.expense-list{ 'data-id' => "#{todo_list.id}" }
+    .panel-heading.row
+      .col-xs-8
+        %h4= todo_list.name
+      .col-xs-4.todo_list_buttons_container
+        %ul.nav.nav-pills.todo_list_buttons
+          %li= link_to '', todo_list_path(todo_list), class: 'todo_list_button glyphicon glyphicon-share-alt'
+          %li.dropdown
+            %a.dropdown-toggle.glyphicon.glyphicon-cog.todo_list_button{ 'data-toggle': 'dropdown', href: '#todo_list_settings' }
+            %ul.dropdown-menu
+              %li= link_to 'Modify list', edit_todo_list_path(todo_list)
+              %li= link_to 'Delete list', todo_list_path(todo_list), method: 'delete', data: { confirm: 'Bist du dir sicher, dass du die Liste löschen willst?' }
+    .panel-body
+      .description
+      %p
+      - if todo_list.description.present?
+        = truncate(todo_list.description, length: 300)
+      - else
+        %i
+          No description supplied, add one
+          =link_to 'here', edit_todo_list_path(todo_list)
+    .panel-footer
+      Open todos:
+      = "#{todo_list.open_todos.count} / #{todo_list.todos.count}"

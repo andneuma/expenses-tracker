@@ -1,3 +1,7 @@
+User.destroy_all
+ExpenseList.destroy_all
+Expense.destroy_all
+
 # Add users
 User.create(name: 'andi',
             email: 'admin@test.com',
@@ -8,6 +12,10 @@ User.create(name: 'daniela',
             email: 'user@test.com',
             password: 'secret',
             password_confirmation: 'secret')
+
+
+
+# EXPENSE LIST SEED DATA
 
 # Add 3 expense_lists
 ExpenseList.create(
@@ -43,5 +51,28 @@ ExpenseList.all.each do |expense_list|
       cash_desk: CASH_DESK.sample,
       expense_date: dates.sample
     ).save(validate: false)
+  end
+end
+
+# TODO LIST SEED DATA
+
+TodoList.destroy_all
+Todo.destroy_all
+
+TodoList.create(name: "First List", description: "This is a seed todo list")
+TodoList.create(name: "Second List", description: "This is another seed todo list")
+
+user_ids = User.pluck(:id)
+dates = ((Date.today - 365)..Date.today).to_a
+TodoList.all.each do |todo_list|
+  (1..10).to_a.sample.times do
+    sample_date = dates.sample
+    todo = Todo.create(
+      todo_list_id: todo_list.id,
+      description: Faker::Hacker.say_something_smart,
+      name: Faker::Company.bs,
+      starts_at: sample_date,
+      ends_at: sample_date + 2)
+    todo.users = User.where(id: user_ids.sample(rand(1..User.count)))
   end
 end

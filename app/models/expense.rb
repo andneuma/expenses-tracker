@@ -2,6 +2,7 @@ class Expense < ActiveRecord::Base
   CASH_DESK = %w{ bar konto foodcoop }
 
   belongs_to :expense_list
+  # TODO: callback einbauen, dass wenn User gelöscht wird die Ausgabe auf anonymous oder Nil-User (to be implemented) gesetzt wird
   belongs_to :user
 
   validates :where, presence: true, length: { minimum: 2, maximum: 75 }

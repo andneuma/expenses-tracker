@@ -1,0 +1,9 @@
+.container-fluid
+  .row
+    .panel-group{ id: 'expense-lists' }
+      - if @todo_lists.any?
+        = render @todo_lists
+      - else
+        %p There is no todo list yet...
+  .row.center
+    = link_to 'Create new todo list', new_todo_list_path, remote: true, class: 'btn btn-default btn-primary btn-success create-todo-list-button'
