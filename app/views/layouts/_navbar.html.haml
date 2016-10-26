@@ -9,6 +9,8 @@
   %ul.nav.navbar-nav.navbar-right
     - if session[:user_id]
       %li.nav-item
+        = link_to 'Todo Lists', todo_lists_path
+      %li.nav-item
         = link_to 'Expense lists', expense_lists_path
       %li.nav-item.dropdown
         %a.nav-link.dropdown-toggle.glyphicon.glyphicon-user.glyph-button{ 'aria-expanded' => 'false', 'aria-haspopup' => 'true', 'data-toggle' => 'dropdown', :href => '#', :role => 'button' }

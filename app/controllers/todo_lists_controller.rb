@@ -1,28 +1,20 @@
 class TodoListsController < ApplicationController
   before_action :set_todo_list, only: [:show, :edit, :update, :destroy]
 
-  # GET /todo_lists
-  # GET /todo_lists.json
   def index
     @todo_lists = TodoList.all
   end
 
-  # GET /todo_lists/1
-  # GET /todo_lists/1.json
   def show
   end
 
-  # GET /todo_lists/new
   def new
     @todo_list = TodoList.new
   end
 
-  # GET /todo_lists/1/edit
   def edit
   end
 
-  # POST /todo_lists
-  # POST /todo_lists.json
   def create
     @todo_list = TodoList.new(todo_list_params)
 
@@ -37,8 +29,6 @@ class TodoListsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /todo_lists/1
-  # PATCH/PUT /todo_lists/1.json
   def update
     respond_to do |format|
       if @todo_list.update(todo_list_params)
