@@ -21,4 +21,5 @@
           No description supplied, add one
           =link_to 'here', edit_todo_list_path(todo_list)
     .panel-footer
-      Amount of open tasks
+      Open todos:
+      = "#{todo_list.open_todos.count} / #{todo_list.todos.count}"
