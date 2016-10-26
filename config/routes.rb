@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :todo_lists do
+    resources :todos
+  end
+  
   resources :users
 
   resources :expense_lists do

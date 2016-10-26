@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161005121537) do
+ActiveRecord::Schema.define(version: 20161026154631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,31 @@ ActiveRecord::Schema.define(version: 20161005121537) do
   add_index "expenses", ["expense_list_id"], name: "index_expenses_on_expense_list_id", using: :btree
   add_index "expenses", ["user_id"], name: "index_expenses_on_user_id", using: :btree
 
+  create_table "todo_lists", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "todos", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.date     "starts_at"
+    t.date     "ends_at"
+    t.integer  "todo_list_id"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.boolean  "finished",     default: false
+  end
+
+  add_index "todos", ["todo_list_id"], name: "index_todos_on_todo_list_id", using: :btree
+
+  create_table "todos_users", id: false, force: :cascade do |t|
+    t.integer "todo_id", null: false
+    t.integer "user_id", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
@@ -53,4 +78,5 @@ ActiveRecord::Schema.define(version: 20161005121537) do
 
   add_foreign_key "expenses", "expense_lists"
   add_foreign_key "expenses", "users"
+  add_foreign_key "todos", "todo_lists"
 end
