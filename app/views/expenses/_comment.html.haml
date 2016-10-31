@@ -1,0 +1,6 @@
+.panel.panel-default
+  .panel-heading
+    %span.expense-comment-panel.username= "#{comment.user.name}"
+    %span.expense-comment-panel.text-muted.time= "commented #{time_ago_in_words(comment.created_at)} ago"
+  .panel-body
+    %p= comment.text
