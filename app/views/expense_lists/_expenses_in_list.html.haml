@@ -1,9 +1,8 @@
 - @expenses.each do |year, month|
   %h3= year
   - month.each do |month, expenses|
-    .table_placeholder
     %h4= month_name(month)
-    %table.table.table-striped.table-bordered.table-condensed.expense-table{ cellspacing: '0' }
+    %table.table.table-condensed.expense-table{ cellspacing: '0' }
       %thead.month-row
         %th.hidden-xs-up
         %th.col-md-1 Date
@@ -16,14 +15,17 @@
         = render partial: 'expenses/expense', locals: { expense: expense, expense_list: @expense_list }
 
       %tr
-        %td.monthly-totals-row{ colspan: '4'}
+        %td.monthly-totals-row.description{ colspan: '4'}
+          Total expenses in month
         %td.monthly-totals-row#sum_of_expenses_in_month
           = "#{expense_list.sum_of_expenses_in_month(month, year)}€"
         %td.monthly-totals-row{ colspan: '1'}
       - if expense_list.budget_in_euro
+        - balance = continous_account_balance_for(expense_list, month, year)
         %tr
-          %td.monthly-totals-row{ colspan: '4'}
-          %td.monthly-totals-row
-            %span#euros_left_in_month= continous_account_balance_for(expense_list, month, year)
-            € left in month
+          %td.monthly-totals-row.description{ colspan: '4'}
+            Money left in month
+          %td.monthly-totals-row.euros_left_in_month
+            %span.euros_left_in_month_value
+              = balance.to_s + "€"
           %td.monthly-totals-row{ colspan: '4'}

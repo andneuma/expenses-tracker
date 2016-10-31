@@ -1,4 +1,4 @@
-%tr
+%tr{ class: "#{expense.expenses_in_euro < 0 ? 'negative' : 'positive'}" }
   %td{class: 'col-md-1'}
     = link_to edit_expense_list_expense_path(expense_list, expense), remote: true, data: { toggle: 'modal', target: '#expense_form_modal' } do
       %span.btn.btn-default.btn-xs.glyphicon.glyphicon-pencil.glyph-button
@@ -11,5 +11,6 @@
   %td= expense.expense_date.strftime("%d.%m")
   %td= expense.where
   %td= expense.user && expense.user.name || '???'
-  %td= "#{expense.expenses_in_euro}€"
+  %td.expense
+    = expense.expenses_in_euro.to_s + "€"
   %td= expense.cash_desk

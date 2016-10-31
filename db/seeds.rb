@@ -54,7 +54,7 @@ ExpenseList.all.each do |expense_list|
       expense_list_id: expense_list.id,
       where: LOCATIONS.sample,
       comment: '',
-      expenses_in_euro: 10 * (0..5).to_a.sample,
+      expenses_in_euro: [1, -1].sample * 10 * (1..5).to_a.sample,
       user_id: user_ids.sample,
       cash_desk: CASH_DESK.sample,
       expense_date: dates.pop
