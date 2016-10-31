@@ -17,12 +17,13 @@
 
       %tr
         %td.monthly-totals-row{ colspan: '4'}
-        %td.monthly-totals-row#sum_of_exp_in_month
-          = "#{expense_list.sum_of_exp_in_month(month, year)}€"
+        %td.monthly-totals-row#sum_of_expenses_in_month
+          = "#{expense_list.sum_of_expenses_in_month(month, year)}€"
         %td.monthly-totals-row{ colspan: '1'}
       - if expense_list.budget_in_euro
         %tr
           %td.monthly-totals-row{ colspan: '4'}
-          %td.monthly-totals-row.euros_left_in_month
-            %b= "#{expense_list.budget_in_euro - expense_list.sum_of_exp_in_month(month, year)}€ left in month"
+          %td.monthly-totals-row
+            %span#euros_left_in_month= continous_account_balance_for(expense_list, month, year)
+            € left in month
           %td.monthly-totals-row{ colspan: '4'}
