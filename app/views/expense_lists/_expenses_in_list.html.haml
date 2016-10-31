@@ -31,3 +31,7 @@
             %span.value
               = balance.to_s + "€"
           %td.monthly-totals-row{ colspan: '4'}
+%a.btn.btn-primary.btn-lg{ id: 'scroll-to-top', role: 'button', title: 'Click to go to the top of the page', data: { toggle: 'tooltip', placement: 'left' } }
+  %span.glyphicon.glyphicon-chevron-up
+%a.btn.btn-primary.btn-lg{ id: 'scroll-to-bottom', role: 'button', title: 'Click to go to the bottom of the page', data: { toggle: 'tooltip', placement: 'left' } }
+  %span.glyphicon.glyphicon-chevron-down
