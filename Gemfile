@@ -24,6 +24,7 @@ gem 'jquery-ui-rails'
 
 group :development, :test do
   gem 'byebug'
+  gem 'faker'
 end
 
 group :test do

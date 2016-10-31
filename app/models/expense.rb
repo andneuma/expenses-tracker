@@ -3,6 +3,7 @@ class Expense < ActiveRecord::Base
 
   belongs_to :expense_list
   belongs_to :user
+  has_many :comments, -> { order(created_at: 'desc') }
 
   validates :where, presence: true, length: { minimum: 2, maximum: 75 }
   validates_date :expense_date, on_or_before: -> { Date.current }
@@ -12,10 +13,6 @@ class Expense < ActiveRecord::Base
   validates :expense_date, presence: true
 
   after_save :alert_on_critical_budget if Rails.env == 'production'
-
-  # Virtual attributes
-  scope :created_in_year, -> (year) { where("date_part('year', expense_date) = ?", year) }
-  scope :created_in_month, -> (month) { where("date_part('month', expense_date) = ?", month ) }
 
   def month
     expense_date.strftime('%m').to_i

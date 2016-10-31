@@ -1,3 +1,8 @@
+Comment.destroy_all
+ExpenseList.destroy_all
+Expense.destroy_all
+User.destroy_all
+
 # Add users
 User.create(name: 'andi',
             email: 'admin@test.com',
@@ -13,7 +18,7 @@ User.create(name: 'daniela',
 ExpenseList.create(
   name: 'List1',
   description: 'This is test list 1',
-  budget_in_euro: 2350
+  budget_in_euro: 500
 )
 
 ExpenseList.create(
@@ -28,20 +33,35 @@ ExpenseList.create(
 )
 
 # Add random expenses
+def sample_dates_for_each_month(years = 1)
+  sample = []
+  start_date = "01/2014".to_date.beginning_of_year
+  end_date = (start_date + years.years).to_date.end_of_year
+  (start_date..end_date).group_by(&:year).each do |year, dates|
+    dates.group_by(&:month).each do |month, dates|
+      sample << dates.sample(rand(1..3))
+    end
+  end
+  sample.flatten
+end
+
 LOCATIONS = %w{Lidl Aldi LPG Baumarkt Zoohandlung}
 CASH_DESK = %w{bar Konto FoodCoop}
 user_ids = User.all.map(&:id)
-dates = ((Date.today - 365)..Date.today).to_a
 ExpenseList.all.each do |expense_list|
-  (1..25).to_a.sample.times do
-    Expense.new(
+  dates = sample_dates_for_each_month
+  dates.count.times do
+    expense = Expense.create(
       expense_list_id: expense_list.id,
       where: LOCATIONS.sample,
       comment: '',
-      expenses_in_euro: (0..200).to_a.sample,
+      expenses_in_euro: [1, -1].sample * 10 * (1..5).to_a.sample,
       user_id: user_ids.sample,
       cash_desk: CASH_DESK.sample,
-      expense_date: dates.sample
-    ).save(validate: false)
+      expense_date: dates.pop
+    )
+    rand(1..2).times do
+      expense.comments.create(text: Faker::Hipster.paragraph(2), user_id: user_ids.sample) if [true, false].sample
+    end
   end
 end

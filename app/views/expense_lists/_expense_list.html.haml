@@ -25,5 +25,5 @@
     .panel-footer
       = "Expenses in #{current_month_name}:"
       %b
-        = "#{expense_list.sum_of_exp_in_month(current_month, current_year)}€"
+        = "#{expense_list.sum_of_expenses_in_month(current_month, current_year)}€"
       = "(#{expense_list.euros_left_in_month(current_month, current_year)}€ left)" if expense_list.budget_in_euro

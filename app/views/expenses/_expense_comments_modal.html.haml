@@ -7,6 +7,9 @@
           %span{'aria-hidden' => 'true'} &#215;
         %h4.modal-title= "Comment for expense from #{expense.expense_date}"
       .modal-body
-        %p= expense.comment.empty? && 'No comment supplied...' || expense.comment
+        .container-fluid
+          .row
+            - expense.comments.any? && expense.comments.each do |comment|
+              = render partial: 'expenses/comment', locals: {comment: comment}
       .modal-footer
         %button.btn.btn-secondary{'data-dismiss' => 'modal', :type => 'button'} Close

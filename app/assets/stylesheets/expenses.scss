@@ -2,3 +2,12 @@
 .create_new_expense_button {
   font-size: 18px;
 }
+
+.expense-comment-panel {
+  &.username {
+    font-weight: bold;
+  }
+  &.time {
+    font-style: italic;
+  }
+}

@@ -1,6 +1,10 @@
 .container-fluid
   %h2= @expense_list.name
   %p.text-muted= @expense_list.description
+  %p
+    Budget:
+    = "#{@expense_list.budget_in_euro}€"
+
   %p.text-muted
     %i
       Total expenses in list: #{@expense_list.total_expenses_in_list}

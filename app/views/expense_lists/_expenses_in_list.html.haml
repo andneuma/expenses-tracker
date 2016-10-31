@@ -1,9 +1,8 @@
 - @expenses.each do |year, month|
   %h3= year
   - month.each do |month, expenses|
-    .table_placeholder
     %h4= month_name(month)
-    %table.table.table-striped.table-bordered.table-condensed.expense-table{ cellspacing: '0' }
+    %table.table.table-condensed.expense-table{ cellspacing: '0' }
       %thead.month-row
         %th.hidden-xs-up
         %th.col-md-1 Date
@@ -15,14 +14,24 @@
       - expenses.each do |expense|
         = render partial: 'expenses/expense', locals: { expense: expense, expense_list: @expense_list }
 
+      %tr.spacer-row
+        %td{ colspan: '5'}
       %tr
-        %td.monthly-totals-row{ colspan: '4'}
-        %td.monthly-totals-row#sum_of_exp_in_month
-          = "#{expense_list.sum_of_exp_in_month(month, year)}€"
+        %td.monthly-totals-row.description{ colspan: '4'}
+          Total expenses in month
+        %td.monthly-totals-row.value#sum_of_expenses_in_month
+          = "#{expense_list.sum_of_expenses_in_month(month, year)}€"
         %td.monthly-totals-row{ colspan: '1'}
       - if expense_list.budget_in_euro
+        - balance = continous_account_balance_for(expense_list, month, year)
         %tr
-          %td.monthly-totals-row{ colspan: '4'}
+          %td.monthly-totals-row.description{ colspan: '4'}
+            Money left in account
           %td.monthly-totals-row.euros_left_in_month
-            %b= "#{expense_list.budget_in_euro - expense_list.sum_of_exp_in_month(month, year)}€ left in month"
+            %span.value
+              = balance.to_s + "€"
           %td.monthly-totals-row{ colspan: '4'}
+%a.btn.btn-primary.btn-lg{ id: 'scroll-to-top', role: 'button', title: 'Click to go to the top of the page', data: { toggle: 'tooltip', placement: 'left' } }
+  %span.glyphicon.glyphicon-chevron-up
+%a.btn.btn-primary.btn-lg{ id: 'scroll-to-bottom', role: 'button', title: 'Click to go to the bottom of the page', data: { toggle: 'tooltip', placement: 'left' } }
+  %span.glyphicon.glyphicon-chevron-down

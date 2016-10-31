@@ -21,6 +21,7 @@ db:structure:dump
 db:structure:load
 db:version
 doc:app
+haml:erb2haml
 log:clear
 middleware
 notes
