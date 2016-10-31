@@ -1,3 +1,4 @@
+Comment.destroy_all
 ExpenseList.destroy_all
 Expense.destroy_all
 User.destroy_all
@@ -50,7 +51,7 @@ user_ids = User.all.map(&:id)
 ExpenseList.all.each do |expense_list|
   dates = sample_dates_for_each_month
   dates.count.times do
-    Expense.new(
+    expense = Expense.create(
       expense_list_id: expense_list.id,
       where: LOCATIONS.sample,
       comment: '',
@@ -58,6 +59,9 @@ ExpenseList.all.each do |expense_list|
       user_id: user_ids.sample,
       cash_desk: CASH_DESK.sample,
       expense_date: dates.pop
-    ).save(validate: false)
+    )
+    rand(1..2).times do
+      expense.comments.create(text: Faker::Hipster.paragraph(2), user_id: user_ids.sample) if [true, false].sample
+    end
   end
 end
